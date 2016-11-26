@@ -260,7 +260,7 @@
  #define JucePlugin_ManufacturerEmail      "info@songwish.ca"
 #endif
 #ifndef  JucePlugin_ManufacturerCode
- #define JucePlugin_ManufacturerCode       0x5357007b // 'SW'
+ #define JucePlugin_ManufacturerCode       0x53570000 // 'SW'
 #endif
 #ifndef  JucePlugin_PluginCode
  #define JucePlugin_PluginCode             0x5a34786c // 'Z4xl'
