@@ -76,20 +76,17 @@ const String MiddlePluginAudioProcessor::getName() const
 
 bool MiddlePluginAudioProcessor::acceptsMidi() const
 {
-   #if JucePlugin_WantsMidiInput
     return true;
-   #else
-    return false;
-   #endif
 }
 
 bool MiddlePluginAudioProcessor::producesMidi() const
 {
-   #if JucePlugin_ProducesMidiOutput
     return true;
-   #else
-    return false;
-   #endif
+}
+
+bool MiddlePluginAudioProcessor::isMidiEffect() const
+{
+    return true;
 }
 
 double MiddlePluginAudioProcessor::getTailLengthSeconds() const
