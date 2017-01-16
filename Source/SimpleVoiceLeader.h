@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <iterator> 
 #include <math.h>
 #include <vector>
 #include <map>
@@ -15,9 +16,10 @@ public:
 	void setChordReferenceNoteValue(int val);
 	int getChordReferenceNoteValue();
 	int fitNote(int note);
-	vector<int> leadInto(vector<int> to);
+	vector<int> lead(vector<int> to);
+	pair<vector<int>, vector<int>> leadInto(vector<int> to, bool isNoteOn, bool release);
 
 private:
 	int chordReferenceNoteValue;
-	vector<int> from; //the chord to lead from
+	pair<vector<int>, vector<int>> last;
 };

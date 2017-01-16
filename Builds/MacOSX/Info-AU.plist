@@ -35,11 +35,11 @@
         <key>factoryFunction</key>
         <string>MiddlePluginAUFactory</string>
         <key>manufacturer</key>
-        <string>SW</string>
+        <string>SOWI</string>
         <key>type</key>
-        <string>aumf</string>
+        <string>aumi</string>
         <key>subtype</key>
-        <string>Z4xl</string>
+        <string>Midl</string>
         <key>version</key>
         <integer>1</integer>
       </dict>

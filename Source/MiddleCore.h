@@ -52,7 +52,7 @@ public:                  // begin public section
 	vector<int> chord(int size, vector<int> scale, int degree);
 	int posMod(int m, int n);
 	vector<int> integerToVectorOfDigits(int id);
-	vector<int> get(int val);
+	pair<vector<int>, vector<int>> get(int val, bool isNoteOn);
 
 
 private:                   // begin private section
@@ -61,6 +61,7 @@ private:                   // begin private section
 	int chordSize;
 	int progressionId;
 	int blackAnchorIndex;
+	int lastBlackIndex = -1;
 	vector<int> blackScaleVec;
 	vector<int> whiteScaleVec;
 	map<int, scaleItem> scales;

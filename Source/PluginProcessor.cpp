@@ -170,41 +170,36 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 {
 	MidiBuffer events;
 	bool isBlack = mc.isBlack(m.getNoteNumber());
-	vector<int> notes = mc.get(m.getNoteNumber());
-	int channel;
+	pair<vector<int>, vector<int>> notes;
+	int channel = whiteNotesChannel;
 	{// white scale notes
 		if (m.isNoteOff()) {
+			notes = mc.get(m.getNoteNumber(), false);
 			if (isBlack) {
 				channel = blackNotesChannel;
 				blackNotesOn.clear();
 			}
-			else {
-				channel = whiteNotesChannel;
-			}
-			for (int n : notes) {
-				MidiMessage mm = MidiMessage::noteOff(channel, n);
-				events.addEvent(mm, time);
-			}
 		}
 		else if (m.isNoteOn()) {
+			notes = mc.get(m.getNoteNumber(), true);
 			if (isBlack) {
 				channel = blackNotesChannel;
 				blackNotesOn.push_back(m.getNoteNumber());
-				if (blackNotesOn.size() > 1) {
+				if (blackNotesOn.size() > 2) {
 					int minBlack = *std::min_element(blackNotesOn.begin(), blackNotesOn.end());
 					mc.updateBlackAnchorIndex(minBlack);
 					return allBlackNotesOff(time);
 				}
 			}
-			else {
-				channel = whiteNotesChannel;
-			}
-			for (int n : notes) {
-				MidiMessage mm = MidiMessage::noteOn(channel, n, m.getVelocity());
-				events.addEvent(mm, time);
-			}
 		}
-
+		for (int n : notes.first) {
+			MidiMessage mm = MidiMessage::noteOff(channel, n);
+			events.addEvent(mm, time);
+		}
+		for (int n : notes.second) {
+			MidiMessage mm = MidiMessage::noteOn(channel, n, m.getVelocity());
+			events.addEvent(mm, time);
+		}
 		return events;
 	}
 }

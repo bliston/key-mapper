@@ -227,19 +227,29 @@ vector<int> MiddleCore::integerToVectorOfDigits(int id)
 	return digits;
 }
 
-vector<int> MiddleCore::get(int val)
+pair<vector<int>, vector<int>> MiddleCore::get(int val, bool isNoteOn)
 {
 	vl.setChordReferenceNoteValue(getChordReferenceNoteValue());
-	vector<int> result;
+	pair<vector<int>, vector<int>> result;
 	piano_key_info keyInfo = pianoKeyInfo(val);
 	if (keyInfo.isBlack) {
 		vector<int> progression = integerToVectorOfDigits(progressionId);
 		int blackKeyIndexPosMod = posMod(keyInfo.index, progression.size());
 		int blackAnchorIndexPosMod = posMod(blackAnchorIndex, progression.size());
-		result = vl.leadInto(chord(chordSize, blackScaleVec, progression[posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, progression.size())]));
+		int modChordIndex = posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, progression.size());
+		result = vl.leadInto(chord(chordSize, blackScaleVec, progression[modChordIndex]), isNoteOn, keyInfo.index == lastBlackIndex);
+		lastBlackIndex = isNoteOn ? keyInfo.index : lastBlackIndex;
 	}
 	else {
-		result = { scaleNoteValueAtIndex(whiteScaleVec, keyInfo.index) };
+		if (isNoteOn) {
+			result.first = {};
+			result.second = { scaleNoteValueAtIndex(whiteScaleVec, keyInfo.index) };
+		}
+		else {
+			result.first = { scaleNoteValueAtIndex(whiteScaleVec, keyInfo.index) };
+			result.second = {};
+		}
+		
 	}
 	return result;
 }
