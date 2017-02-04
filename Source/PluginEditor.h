@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "ValueTreeLabelAttachment.h"
 
 
 //==============================================================================
@@ -36,8 +37,6 @@ public:
     //==============================================================================
     void paint (Graphics& g) override;
     void resized() override;
-	void setProgression(int prog);
-	int getProgression(int prog);
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -62,8 +61,8 @@ private:
 	ScopedPointer<ComboBoxAttachment> chordSizeAttachment;
 
 	Label progressionLabel;
-	Slider progressionSlider;
-	ScopedPointer<SliderAttachment> progressionAttachment;
+	Label progressionInputLabel;
+	ScopedPointer<ValueTreeLabelAttachment> progressionAttachment;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessorEditor)
 };

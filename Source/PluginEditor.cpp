@@ -74,10 +74,10 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	progressionLabel.setText("Progression: ex: 14526", dontSendNotification);
 	addAndMakeVisible(progressionLabel);
 
-
-	addAndMakeVisible(progressionSlider);
-	progressionSlider.setSliderStyle(Slider::SliderStyle::IncDecButtons);
-	progressionAttachment = new SliderAttachment(valueTreeState, "progression", progressionSlider);
+	progressionInputLabel.setEditable(true);
+	progressionInputLabel.setText("14526", dontSendNotification);
+	addAndMakeVisible(progressionInputLabel);
+	progressionAttachment = new ValueTreeLabelAttachment(valueTreeState.state, &progressionInputLabel, "progressionString");
 	setSize(paramComponentWidth + paramLabelWidth, paramControlHeight * 5);
 }
 
@@ -109,7 +109,7 @@ void MiddlePluginAudioProcessorEditor::resized()
 
 	juce::Rectangle<int> progressionRect = r.removeFromTop(paramControlHeight);
 	progressionLabel.setBounds(progressionRect.removeFromLeft(paramLabelWidth));
-	progressionSlider.setBounds(progressionRect.reduced(padding));
+	progressionInputLabel.setBounds(progressionRect.reduced(padding));
 
 }
 

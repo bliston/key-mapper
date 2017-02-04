@@ -53,15 +53,16 @@ MiddlePluginAudioProcessor::MiddlePluginAudioProcessor()
 		nullptr,
 		nullptr);
 
-	parameters.createAndAddParameter("progression",       // parameterID
-		"Progression",       // parameter name
-		String(),     // parameter label (suffix)
-		NormalisableRange<float>(1.0f, FLT_MAX, 1.0f),    // range
-		1451.0f,         // default value
-		nullptr,
-		nullptr);
+	//parameters.createAndAddParameter("progression",       // parameterID
+	//	"Progression",       // parameter name
+	//	String(),     // parameter label (suffix)
+	//	NormalisableRange<float>(1.0f, FLT_MAX, 1.0f),    // range
+	//	(float) 1451,         // default value
+	//	nullptr,
+	//	nullptr);
 
 	parameters.state = ValueTree(Identifier("MiddlePlugin"));
+	parameters.state.setProperty("progressionString", "54236", nullptr);
 }
 
 MiddlePluginAudioProcessor::~MiddlePluginAudioProcessor()
@@ -69,6 +70,7 @@ MiddlePluginAudioProcessor::~MiddlePluginAudioProcessor()
 }
 
 //==============================================================================
+
 const String MiddlePluginAudioProcessor::getName() const
 {
     return JucePlugin_Name;
@@ -210,7 +212,11 @@ void MiddlePluginAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuf
 	int key = *parameters.getRawParameterValue("key");
 	int chordOctave = *parameters.getRawParameterValue("chordOctave");
 	int chordSize = *parameters.getRawParameterValue("chordSize");
-	int progression = *parameters.getRawParameterValue("progression");
+	vector<int> progression = { 1,2,3,4,5,6,7 };
+	if (parameters.state.hasProperty("progressionString"))
+	{
+		progression = stringToVectorOfDigits(parameters.state.getProperty("progressionString").toString().toStdString());
+	}
 	mc.updatePreset(scalesId + 1);
 	mc.updateKey(key);
 	mc.updateChordOctave(chordOctave + 3);
@@ -270,4 +276,14 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new MiddlePluginAudioProcessor();
 }
 
-
+vector<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
+{
+	vector<int> digits;
+	string::iterator it;
+	for (it = id.begin(); it != id.end(); it++)
+	{
+		int d = *it;
+		digits.push_back(d + 1);
+	}
+	return digits;
+}

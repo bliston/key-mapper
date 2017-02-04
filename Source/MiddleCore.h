@@ -36,7 +36,7 @@ public:                  // begin public section
 	void initScales();
 	void initPresets();
 	void updatePreset(int id);
-	void updateProgression(int id);
+	void updateProgression(vector<int> p);
 	void updateKey(int k);
 	void updateChordOctave(int oct);
 	void updateChordSize(int size);
@@ -51,15 +51,14 @@ public:                  // begin public section
 	int getChordReferenceNoteValue();
 	vector<int> chord(int size, vector<int> scale, int degree);
 	int posMod(int m, int n);
-	vector<int> integerToVectorOfDigits(int id);
 	pair<vector<int>, vector<int>> get(int val, bool isNoteOn);
 
 
-private:                   // begin private section
+private:
 	int key;
 	int chordOctave;
 	int chordSize;
-	int progressionId;
+	string progressionId;
 	int blackAnchorIndex;
 	int lastBlackIndex = -1;
 	vector<int> blackScaleVec;
@@ -67,5 +66,6 @@ private:                   // begin private section
 	map<int, scaleItem> scales;
 	map<int, presetItem> presets;
 	SimpleVoiceLeader vl;
+	vector<int> progression;
 	vector<vector<int>> progressions;
 };

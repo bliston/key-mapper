@@ -8,11 +8,13 @@
               pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="1" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="MiddlePluginAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.MiddlePlugin"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.0"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.1"
               companyName="SongWish Inc." companyWebsite="www.songwish.ca"
               companyEmail="info@songwish.ca">
   <MAINGROUP id="e3fIU7" name="MiddlePlugin">
     <GROUP id="{BCF81D7C-BA9A-6526-B5E5-30B964990CA5}" name="Source">
+      <FILE id="XslUcH" name="ValueTreeLabelAttachment.h" compile="0" resource="0"
+            file="Source/ValueTreeLabelAttachment.h"/>
       <FILE id="wV2vVR" name="SimpleVoiceLeader.cpp" compile="1" resource="0"
             file="Source/SimpleVoiceLeader.cpp"/>
       <FILE id="BCA2Qx" name="SimpleVoiceLeader.h" compile="1" resource="0"

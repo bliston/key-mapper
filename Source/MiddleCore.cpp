@@ -12,7 +12,6 @@
 // constructor of MiddleCore,
 MiddleCore::MiddleCore()
 {
-
 	key = 4;
 	chordOctave = 4;
 	chordSize = 4;
@@ -85,9 +84,14 @@ void MiddleCore::updatePreset(int id)
 	whiteScaleVec = addAmountToVectorValues(scales.at(selPreset.whiteId).pitch_set, key);
 }
 
-void MiddleCore::updateProgression(int id)
+//void MiddleCore::updateProgression(int id)
+//{
+//	progressionId = id;
+//}
+
+void MiddleCore::updateProgression(vector<int> p)
 {
-	progressionId = id;
+	progression = p;
 }
 
 void MiddleCore::updateKey(int k)
@@ -210,30 +214,12 @@ int MiddleCore::posMod(int m, int n)
 	return (m % n + n) % n;
 }
 
-vector<int> MiddleCore::integerToVectorOfDigits(int id)
-{
-	vector<int> digits;
-
-	while (id)
-	{
-		int d = id % 10;
-		if (d != 0)
-			digits.push_back(d);
-
-		id /= 10;
-	}
-
-	std::reverse(digits.begin(), digits.end());
-	return digits;
-}
-
 pair<vector<int>, vector<int>> MiddleCore::get(int val, bool isNoteOn)
 {
 	vl.setChordReferenceNoteValue(getChordReferenceNoteValue());
 	pair<vector<int>, vector<int>> result;
 	piano_key_info keyInfo = pianoKeyInfo(val);
 	if (keyInfo.isBlack) {
-		vector<int> progression = integerToVectorOfDigits(progressionId);
 		int blackKeyIndexPosMod = posMod(keyInfo.index, progression.size());
 		int blackAnchorIndexPosMod = posMod(blackAnchorIndex, progression.size());
 		int modChordIndex = posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, progression.size());

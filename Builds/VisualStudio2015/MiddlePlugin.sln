@@ -1,8 +1,6 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MiddlePlugin", "MiddlePlugin.vcxproj", "{C20D30F1-EC44-0209-5EC0-8FEE7EB415D3}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+Project("{42424522-56C0-6448-E1F2-E0A8DD09A739}") = "MiddlePlugin", "MiddlePlugin.vcxproj", "{C20D30F1-EC44-0209-5EC0-8FEE7EB415D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

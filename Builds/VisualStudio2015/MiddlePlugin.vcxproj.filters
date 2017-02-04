@@ -2211,6 +2211,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ValueTreeLabelAttachment.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\SimpleVoiceLeader.h">
       <Filter>MiddlePlugin\Source</Filter>
     </ClInclude>
