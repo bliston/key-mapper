@@ -8,7 +8,7 @@
               pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="1" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="MiddlePluginAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.MiddlePlugin"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.1"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.0"
               companyName="SongWish Inc." companyWebsite="www.songwish.ca"
               companyEmail="info@songwish.ca">
   <MAINGROUP id="e3fIU7" name="MiddlePlugin">

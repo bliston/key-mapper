@@ -66,6 +66,7 @@ private:
 	vector<int> blackNotesOn;
 	int whiteNotesChannel;
 	int blackNotesChannel;
+	vector<int> decodeProperty(String input);
 	vector<int> stringToVectorOfDigits(string id);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessor)

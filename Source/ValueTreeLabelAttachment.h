@@ -65,10 +65,10 @@ public:
         label = _label;
 
         if (tree.hasProperty (property)) {
-            label->setText (tree.getProperty(property), juce::dontSendNotification);
+            label->setText (decodeProperty(tree.getProperty(property)), juce::dontSendNotification);
         }
         else {
-            tree.setProperty (property, label->getText(), undoMgr);
+			tree.setProperty(property, encodeProperty(label->getText()), undoMgr);
         }
 
         tree.addListener (this);
@@ -88,7 +88,9 @@ public:
         if (! updating) {
             updating = true;
             if (label == _label) {
-                tree.setProperty (property, label->getText(), undoMgr);
+				String input = cleanUpInput(label->getText());
+				label->setText(input, dontSendNotification);
+				tree.setProperty(property, encodeProperty(input), undoMgr);
             }
             updating = false;
         }
@@ -100,13 +102,47 @@ public:
             updating = true;
             if (treeWhosePropertyHasChanged == tree && label) {
                 if (_property == property) {
-                    label->setText(tree.getProperty (property), juce::dontSendNotification);
+                    label->setText(decodeProperty(tree.getProperty(property)), juce::dontSendNotification);
                 }
             }
 
             updating = false;
         }
     }
+
+	String removeNonDigital(String input)
+	{
+		StringArray tokens;
+		for (char& c : input.toStdString()) {
+			if ('0' < c && c <= '9')
+			{
+				tokens.add(to_string(c - '0'));
+			}
+
+		}
+		return tokens.joinIntoString("");
+	}
+	
+	String cleanUpInput(String input)
+	{
+		return removeNonDigital(input);
+	}
+
+	String encodeProperty(String input)
+	{
+		StringArray tokens;
+		for (char& c : input.toStdString()) {
+			tokens.add(to_string(c - '0'));
+		}
+		return tokens.joinIntoString(" ");
+	}
+
+	String decodeProperty(String input)
+	{
+		StringArray tokens;
+		tokens.addTokens(input, " ", "");
+		return tokens.joinIntoString("");
+	}
     
     void valueTreeChildAdded (juce::ValueTree &parentTree, juce::ValueTree &childWhichHasBeenAdded) override {}
     void valueTreeChildRemoved (juce::ValueTree &parentTree, juce::ValueTree &childWhichHasBeenRemoved, int indexFromWhichChildWasRemoved) override {}

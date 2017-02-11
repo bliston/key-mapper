@@ -215,7 +215,7 @@ void MiddlePluginAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuf
 	vector<int> progression = { 1,2,3,4,5,6,7 };
 	if (parameters.state.hasProperty("progressionString"))
 	{
-		progression = stringToVectorOfDigits(parameters.state.getProperty("progressionString").toString().toStdString());
+		progression = decodeProperty(parameters.state.getProperty("progressionString").toString());
 	}
 	mc.updatePreset(scalesId + 1);
 	mc.updateKey(key);
@@ -274,6 +274,13 @@ void MiddlePluginAudioProcessor::setStateInformation(const void* data, int sizeI
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new MiddlePluginAudioProcessor();
+}
+
+vector<int> MiddlePluginAudioProcessor::decodeProperty(String input)
+{
+	StringArray tokens;
+	tokens.addTokens(input, " ", "");
+	return stringToVectorOfDigits(tokens.joinIntoString("").toStdString());
 }
 
 vector<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
