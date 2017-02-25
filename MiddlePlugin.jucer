@@ -8,11 +8,36 @@
               pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="1" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="MiddlePluginAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.MiddlePlugin"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.0"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="4.3.1"
               companyName="SongWish Inc." companyWebsite="www.songwish.ca"
               companyEmail="info@songwish.ca">
   <MAINGROUP id="e3fIU7" name="MiddlePlugin">
     <GROUP id="{BCF81D7C-BA9A-6526-B5E5-30B964990CA5}" name="Source">
+      <FILE id="NRPDkH" name="MidiUtils.cpp" compile="1" resource="0" file="Source/MidiUtils.cpp"/>
+      <FILE id="DMhhh3" name="MidiUtils.h" compile="0" resource="0" file="Source/MidiUtils.h"/>
+      <FILE id="Ytv6BQ" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
+      <FILE id="AiAXaq" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
+      <FILE id="lif9z8" name="DiatonicChordProgressionAndScaleMidiMap.cpp"
+            compile="1" resource="0" file="Source/DiatonicChordProgressionAndScaleMidiMap.cpp"/>
+      <FILE id="cVnDUc" name="DiatonicChordProgressionAndScaleMidiMap.h"
+            compile="0" resource="0" file="Source/DiatonicChordProgressionAndScaleMidiMap.h"/>
+      <FILE id="frtvqP" name="DiatonicChordProgressionMidiMap.cpp" compile="1"
+            resource="0" file="Source/DiatonicChordProgressionMidiMap.cpp"/>
+      <FILE id="HNtFun" name="DiatonicChordProgressionMidiMap.h" compile="0"
+            resource="0" file="Source/DiatonicChordProgressionMidiMap.h"/>
+      <FILE id="t4SCAM" name="ScaleMidiMap.cpp" compile="1" resource="0"
+            file="Source/ScaleMidiMap.cpp"/>
+      <FILE id="H5YmQd" name="ScaleMidiMap.h" compile="0" resource="0" file="Source/ScaleMidiMap.h"/>
+      <FILE id="PL19tm" name="BlackAndWhiteMidiMap.cpp" compile="1" resource="0"
+            file="Source/BlackAndWhiteMidiMap.cpp"/>
+      <FILE id="Aj1zgs" name="BlackAndWhiteMidiMap.h" compile="0" resource="0"
+            file="Source/BlackAndWhiteMidiMap.h"/>
+      <FILE id="eNWTzT" name="MidiMap.cpp" compile="1" resource="0" file="Source/MidiMap.cpp"/>
+      <FILE id="Fg3TXw" name="MidiMap.h" compile="0" resource="0" file="Source/MidiMap.h"/>
+      <FILE id="o4FLtr" name="Chord.cpp" compile="1" resource="0" file="Source/Chord.cpp"/>
+      <FILE id="sGTdyA" name="Chord.h" compile="0" resource="0" file="Source/Chord.h"/>
+      <FILE id="XihzyB" name="ValueTreeComboBoxAttachment.h" compile="0"
+            resource="0" file="Source/ValueTreeComboBoxAttachment.h"/>
       <FILE id="XslUcH" name="ValueTreeLabelAttachment.h" compile="0" resource="0"
             file="Source/ValueTreeLabelAttachment.h"/>
       <FILE id="wV2vVR" name="SimpleVoiceLeader.cpp" compile="1" resource="0"

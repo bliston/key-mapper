@@ -13,7 +13,6 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MiddleCore.h"
-#include <vector>
 
 //==============================================================================
 /**
@@ -21,7 +20,6 @@
 class MiddlePluginAudioProcessor  : public AudioProcessor
 {
 public:
-	MiddleCore mc;
     //==============================================================================
     MiddlePluginAudioProcessor();
     ~MiddlePluginAudioProcessor();
@@ -63,11 +61,17 @@ public:
 private:
     //==============================================================================
 	AudioProcessorValueTreeState parameters;
-	vector<int> blackNotesOn;
+	MiddleCore mc;
+	Array<int> blackNotesOn;
+	map<String, int> keyMap;
 	int whiteNotesChannel;
 	int blackNotesChannel;
-	vector<int> decodeProperty(String input);
-	vector<int> stringToVectorOfDigits(string id);
+	String decodeScalesProperty(String input);
+	int decodeKeyProperty(String input);
+	int decodeChordOctaveProperty(String input);
+	int decodeChordSizeProperty(String input);
+	Array<int> decodeProgressionProperty(String input);
+	Array<int> stringToVectorOfDigits(string id);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessor)
 };

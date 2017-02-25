@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "ValueTreeComboBoxAttachment.h"
 #include "ValueTreeLabelAttachment.h"
 
 
@@ -46,19 +47,19 @@ private:
 
 	Label scalesLabel;
 	ComboBox scalesComboBox;
-	ScopedPointer<ComboBoxAttachment> scalesAttachment;
+	ScopedPointer<ValueTreeComboBoxAttachment> scalesAttachment;
 
 	Label keyLabel;
 	ComboBox keyComboBox;
-	ScopedPointer<ComboBoxAttachment> keyAttachment;
+	ScopedPointer<ValueTreeComboBoxAttachment> keyAttachment;
 
 	Label chordOctaveLabel;
 	ComboBox chordOctaveComboBox;
-	ScopedPointer<ComboBoxAttachment> chordOctaveAttachment;
+	ScopedPointer<ValueTreeComboBoxAttachment> chordOctaveAttachment;
 
 	Label chordSizeLabel;
 	ComboBox chordSizeComboBox;
-	ScopedPointer<ComboBoxAttachment> chordSizeAttachment;
+	ScopedPointer<ValueTreeComboBoxAttachment> chordSizeAttachment;
 
 	Label progressionLabel;
 	Label progressionInputLabel;

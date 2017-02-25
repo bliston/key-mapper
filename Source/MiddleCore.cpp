@@ -12,22 +12,11 @@
 // constructor of MiddleCore,
 MiddleCore::MiddleCore()
 {
-	key = 4;
-	chordOctave = 4;
-	chordSize = 4;
-	progressionId = 1;
-	blackAnchorIndex = 0;
-	WHITE_INDICES = { 0, 2, 4, 5, 7, 9, 11 };
-	BLACK_INDICES = { 1, 3, 6, 8, 10 };
-	blackScaleVec = { 0, 2, 4, 5, 7, 9, 11 };
-	whiteScaleVec = { 0, 2, 4, 7, 9 };
+	midiMap = new DiatonicChordProgressionAndScaleMidiMap();
 	initScales();
 	initPresets();
-	updatePreset(1);
-	vl = SimpleVoiceLeader(getChordReferenceNoteValue());
-	progressions = { { 1, 4, 5, 1 }, {1, 5, 6, 4}, {1, 6, 4, 5}, {1, 4, 6, 5}, {1, 5, 4, 5} };
-	
-	
+	setPreset("Major");
+	voiceLeader = new SimpleVoiceLeader(midiMap->getChordMidiMap()->getChordReferenceNoteValue());
 }
 
 MiddleCore::~MiddleCore()                 // destructor, just an example
@@ -64,175 +53,72 @@ void MiddleCore::initScales()
 void MiddleCore::initPresets()
 {
 
-	presets[1] = { "Major", 1361, 1361 };
-	presets[2] = { "Major Solo 1", 1361, 393 };
-	presets[3] = { "Minor", 1323, 1323 };
-	presets[4] = { "Minor Solo 1", 1323, 465 };
-	presets[5] = { "Harmonic Minor", 1324, 1324 };
-	presets[6] = { "Harmonic Minor Solo 1", 1324, 371 };
-	presets[7] = { "Major Blues Solo 1", 1361, 785 };
-	presets[8] = { "Minor Blues Solo 1", 1323, 936 };
+	presets["Major 1"] = { 1361, 1361, 3 };
+	presets["Major Solo 1"] = { 1361, 393, 3 };
+	presets["Minor 1"] = { 1323, 1323, 3 };
+	presets["Minor Solo 1"] = { 1323, 465, 3 };
+	presets["Harmonic Minor 1"] = { 1324, 1324, 3 };
+	presets["Harmonic Minor Solo 1"] = { 1324, 371, 3 };
+	presets["Major Blues Solo 1"] = { 1361, 785, 3 };
+	presets["Minor Blues Solo 1"] = { 1323, 936, 3 };
 }
 
-void MiddleCore::updatePreset(int id)
+void MiddleCore::setPreset(String name)
 {
-	if (!presets.count(id)) {
-		return;
-	}
-	presetItem selPreset = presets.at(id);
-	blackScaleVec = addAmountToVectorValues(scales.at(selPreset.blackId).pitch_set, getChordReferenceNoteValue());
-	whiteScaleVec = addAmountToVectorValues(scales.at(selPreset.whiteId).pitch_set, key);
+	presetItem selPreset = presets[name];
+	midiMap->getChordMidiMap()->setScale(scales[selPreset.blackId].pitch_set);
+	midiMap->getScaleMidiMap()->setScale(scales[selPreset.whiteId].pitch_set);
+	setChordSize(selPreset.chordSize);
 }
 
-//void MiddleCore::updateProgression(int id)
-//{
-//	progressionId = id;
-//}
-
-void MiddleCore::updateProgression(vector<int> p)
+void MiddleCore::setProgression(Array<int> p)
 {
-	progression = p;
+	midiMap->getChordMidiMap()->setProgression(p);
 }
 
-void MiddleCore::updateKey(int k)
+void MiddleCore::setKey(int k)
 {
-	key = k;
+	midiMap->getChordMidiMap()->setKey(k);
+	midiMap->getScaleMidiMap()->setKey(k);
 }
 
-void MiddleCore::updateChordOctave(int oct)
+void MiddleCore::setChordOctave(int oct)
 {
-	chordOctave = oct;
+	midiMap->getChordMidiMap()->setChordOctave(oct);
 }
 
-void MiddleCore::updateChordSize(int size)
+void MiddleCore::setChordSize(int size)
 {
-	chordSize = size;
+	midiMap->getChordMidiMap()->setChordSize(size);
 }
 
-void MiddleCore::updateBlackAnchorIndex(int blackNoteValue)
+void MiddleCore::setChordAnchorIndex(int blackNoteValue)
 {
-	piano_key_info pianoKey = pianoKeyInfo(blackNoteValue);
-	blackAnchorIndex = pianoKey.index;
-
-}
-
-vector<int> MiddleCore::addAmountToVectorValues(vector<int> values, int amount)
-{
-	vector<int> result;
-	for (int v : values) {
-		result.push_back(v + amount);
-	}
-	return result;
-}
-
-void MiddleCore::printVector(vector<int> vec)
-{
-	for (int v : vec)
-		cout << v << ' ';
-	cout << '\n';
-}
-
-int MiddleCore::indexOf(vector<int> vec, int val)
-{
-	auto it = find(vec.begin(), vec.end(), val);
-	if (it == vec.end()) return -1;
-	return distance(vec.begin(), it);
-
-}
-
-int MiddleCore::scaleNoteValueAtIndex(vector<int> scale, int index)
-{
-	int n = scale.size();
-	int i = index;
-	int posResult = 12 * floor(i / n) + scale[i % n];
-	int negResult = 12 * ceil((i + 1) / n - 1) + scale[posMod(i, n)];
-	int result = i >= 0 ? posResult : negResult;
-	cout << "scaleNoteValAtIndex " << result << endl;
-	return result;
-}
-
-int MiddleCore::scaleIndexOfNoteValue(vector<int> scale, int val)
-{
-	int modIndex = indexOf(scale, val % 12);
-	int numLoops = floor(val / 12);
-	int result = numLoops * scale.size() + modIndex;
-	cout << "scaleIndexOfNoteVal " << result << endl;
-	return result;
+	midiMap->getChordMidiMap()->setChordAnchorIndex(blackNoteValue);
 }
 
 bool MiddleCore::isBlack(int val)
 {
-	bool result;
-	switch (val % 12) {
-	case 1:
-	case 3:
-	case 6:
-	case 8:
-	case 10: {
-		result = true;
-	}
-			 break;
-	default: {
-		result = false;
-	}
-	}
-	return result;
+	return MidiUtils::isBlack(val);
 }
 
-piano_key_info MiddleCore::pianoKeyInfo(int val)
+pair<Array<int>, Array<int>> MiddleCore::get(int val, bool isNoteOn)
 {
-	bool black = isBlack(val);
-	vector<int> scale;
-	scale = black ? BLACK_INDICES : WHITE_INDICES;
-	int index = scaleIndexOfNoteValue(scale, val);
-	piano_key_info result;
-	result.isBlack = black;
-	result.index = index;
-	cout << "pianoKeyInfo " << result.isBlack << " " << result.index << endl;
-	return result;
-}
-
-int MiddleCore::getChordReferenceNoteValue()
-{
-	return key + 12 * (chordOctave + 1);
-}
-
-vector<int> MiddleCore::chord(int size, vector<int> scale, int degree)
-{
-	int one = scaleNoteValueAtIndex(scale, degree - 1);
-	int three = scaleNoteValueAtIndex(scale, degree - 1 + 2);
-	int five = scaleNoteValueAtIndex(scale, degree - 1 + 4);
-	int seven = scaleNoteValueAtIndex(scale, degree - 1 + 6);
-	vector<int> triad = { one, three, five };
-	vector<int> seventh = { one, three, five, seven };
-
-	return size == 3 ? triad : seventh;
-}
-
-int MiddleCore::posMod(int m, int n)
-{
-	return (m % n + n) % n;
-}
-
-pair<vector<int>, vector<int>> MiddleCore::get(int val, bool isNoteOn)
-{
-	vl.setChordReferenceNoteValue(getChordReferenceNoteValue());
-	pair<vector<int>, vector<int>> result;
-	piano_key_info keyInfo = pianoKeyInfo(val);
+	voiceLeader->setChordReferenceNoteValue(midiMap->getChordMidiMap()->getChordReferenceNoteValue());
+	pair<Array<int>, Array<int>> result;
+	piano_key_info keyInfo = MidiUtils::pianoKeyInfo(val);
+	Array<int> notes = midiMap->map(val);
 	if (keyInfo.isBlack) {
-		int blackKeyIndexPosMod = posMod(keyInfo.index, progression.size());
-		int blackAnchorIndexPosMod = posMod(blackAnchorIndex, progression.size());
-		int modChordIndex = posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, progression.size());
-		result = vl.leadInto(chord(chordSize, blackScaleVec, progression[modChordIndex]), isNoteOn, keyInfo.index == lastBlackIndex);
+		result = voiceLeader->leadInto(notes, isNoteOn, keyInfo.index == lastBlackIndex);
 		lastBlackIndex = isNoteOn ? keyInfo.index : lastBlackIndex;
 	}
 	else {
 		if (isNoteOn) {
 			result.first = {};
-			result.second = { scaleNoteValueAtIndex(whiteScaleVec, keyInfo.index) };
+			result.second = notes;
 		}
 		else {
-			result.first = { scaleNoteValueAtIndex(whiteScaleVec, keyInfo.index) };
+			result.first = notes;
 			result.second = {};
 		}
 		

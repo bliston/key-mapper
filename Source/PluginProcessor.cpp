@@ -17,52 +17,28 @@
 MiddlePluginAudioProcessor::MiddlePluginAudioProcessor() 
 	: parameters(*this, nullptr)
 {
-	mc = MiddleCore();
 	whiteNotesChannel = 1;
 	blackNotesChannel = 2;
 
-	parameters.createAndAddParameter("scalesId",       // parameterID
-		"Scales Selection",       // parameter name
-		String(),     // parameter label (suffix)
-		NormalisableRange<float>(0.0f, 100.0f),    // range
-		0.0f,         // default value
-		nullptr,
-		nullptr);
-
-	parameters.createAndAddParameter("key",       // parameterID
-		"Key",       // parameter name
-		String(),     // parameter label (suffix)
-		NormalisableRange<float>(0.0f, 100.0f),    // range
-		0.0f,         // default value
-		nullptr,
-		nullptr);
-
-	parameters.createAndAddParameter("chordOctave",       // parameterID
-		"Chord Octave",       // parameter name
-		String(),     // parameter label (suffix)
-		NormalisableRange<float>(0.0f, 100.0f),    // range
-		0.0f,         // default value
-		nullptr,
-		nullptr);
-
-	parameters.createAndAddParameter("chordSize",       // parameterID
-		"Chord Size",       // parameter name
-		String(),     // parameter label (suffix)
-		NormalisableRange<float>(0.0f, 100.0f),    // range
-		0.0f,         // default value
-		nullptr,
-		nullptr);
-
-	//parameters.createAndAddParameter("progression",       // parameterID
-	//	"Progression",       // parameter name
-	//	String(),     // parameter label (suffix)
-	//	NormalisableRange<float>(1.0f, FLT_MAX, 1.0f),    // range
-	//	(float) 1451,         // default value
-	//	nullptr,
-	//	nullptr);
-
 	parameters.state = ValueTree(Identifier("MiddlePlugin"));
+	parameters.state.setProperty("scalesId", "Major 1", nullptr);
+	parameters.state.setProperty("key", "C", nullptr);
+	parameters.state.setProperty("chordOctave", "3", nullptr);
+	parameters.state.setProperty("chordSize", "3", nullptr);
 	parameters.state.setProperty("progressionString", "54236", nullptr);
+
+	keyMap["C"] = 0;
+	keyMap["C#/Db"] = 1;
+	keyMap["D"] = 2;
+	keyMap["D#/Eb"] = 3;
+	keyMap["E"] = 4;
+	keyMap["F"] = 5;
+	keyMap["F#/Gb"] = 6;
+	keyMap["G"] = 7;
+	keyMap["G#/Ab"] = 8;
+	keyMap["A"] = 9;
+	keyMap["A#/Bb"] = 10;
+	keyMap["B"] = 11;
 }
 
 MiddlePluginAudioProcessor::~MiddlePluginAudioProcessor()
@@ -172,7 +148,7 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 {
 	MidiBuffer events;
 	bool isBlack = mc.isBlack(m.getNoteNumber());
-	pair<vector<int>, vector<int>> notes;
+	pair<Array<int>, Array<int>> notes;
 	int channel = whiteNotesChannel;
 	{// white scale notes
 		if (m.isNoteOff()) {
@@ -186,10 +162,10 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 			notes = mc.get(m.getNoteNumber(), true);
 			if (isBlack) {
 				channel = blackNotesChannel;
-				blackNotesOn.push_back(m.getNoteNumber());
+				blackNotesOn.add(m.getNoteNumber());
 				if (blackNotesOn.size() > 2) {
 					int minBlack = *std::min_element(blackNotesOn.begin(), blackNotesOn.end());
-					mc.updateBlackAnchorIndex(minBlack);
+					mc.setChordAnchorIndex(minBlack);
 					return allBlackNotesOff(time);
 				}
 			}
@@ -208,20 +184,20 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 
 void MiddlePluginAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-	int scalesId = *parameters.getRawParameterValue("scalesId");
-	int key = *parameters.getRawParameterValue("key");
-	int chordOctave = *parameters.getRawParameterValue("chordOctave");
-	int chordSize = *parameters.getRawParameterValue("chordSize");
-	vector<int> progression = { 1,2,3,4,5,6,7 };
+	String scalesId = decodeScalesProperty(parameters.state.getProperty("scalesId").toString());
+	int key = decodeKeyProperty(parameters.state.getProperty("key").toString());
+	int chordOctave = decodeChordOctaveProperty(parameters.state.getProperty("chordOctave").toString());
+	int chordSize = decodeChordSizeProperty(parameters.state.getProperty("chordSize").toString());
+	Array<int> progression = { 1,2,3,4,5,6,7 };
 	if (parameters.state.hasProperty("progressionString"))
 	{
-		progression = decodeProperty(parameters.state.getProperty("progressionString").toString());
+		progression = decodeProgressionProperty(parameters.state.getProperty("progressionString").toString());
 	}
-	mc.updatePreset(scalesId + 1);
-	mc.updateKey(key);
-	mc.updateChordOctave(chordOctave + 3);
-	mc.updateChordSize(chordSize + 3);
-	mc.updateProgression(progression);
+	mc.setPreset(scalesId);
+	mc.setKey(key);
+	mc.setChordOctave(chordOctave);
+	mc.setChordSize(chordSize);
+	mc.setProgression(progression);
 	buffer.clear();
 
 	MidiBuffer processedMidi;
@@ -276,21 +252,41 @@ AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new MiddlePluginAudioProcessor();
 }
 
-vector<int> MiddlePluginAudioProcessor::decodeProperty(String input)
+String MiddlePluginAudioProcessor::decodeScalesProperty(String input)
+{
+	return input;
+}
+
+int MiddlePluginAudioProcessor::decodeKeyProperty(String input)
+{
+	return keyMap[input];
+}
+
+int MiddlePluginAudioProcessor::decodeChordOctaveProperty(String input)
+{
+	return input.getIntValue();
+}
+
+int MiddlePluginAudioProcessor::decodeChordSizeProperty(String input)
+{
+	return input.getIntValue();
+}
+
+Array<int> MiddlePluginAudioProcessor::decodeProgressionProperty(String input)
 {
 	StringArray tokens;
 	tokens.addTokens(input, " ", "");
 	return stringToVectorOfDigits(tokens.joinIntoString("").toStdString());
 }
 
-vector<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
+Array<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
 {
-	vector<int> digits;
+	Array<int> digits;
 	string::iterator it;
 	for (it = id.begin(); it != id.end(); it++)
 	{
 		int d = *it;
-		digits.push_back(d + 1);
+		digits.add(d + 1);
 	}
 	return digits;
 }

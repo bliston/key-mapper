@@ -39,21 +39,21 @@ int SimpleVoiceLeader::fitNote(int note)
 	return chordReferenceNoteValue + note % 12 - chordReferenceNoteValue % 12;
 }
 
-vector<int> SimpleVoiceLeader::lead(vector<int> to)
+Array<int> SimpleVoiceLeader::lead(Array<int> to)
 {
-	vector<int> result;
+	Array<int> result;
 	for (int n : to) {
-		result.push_back(fitNote(n));
+		result.add(fitNote(n));
 	}
 	return result;
 }
 
-pair<vector<int>, vector<int>> SimpleVoiceLeader::leadInto(vector<int> to, bool isNoteOn, bool release)
+pair<Array<int>, Array<int>> SimpleVoiceLeader::leadInto(Array<int> to, bool isNoteOn, bool release)
 {
-	pair<vector<int>, vector<int>> result;
-	vector<int> lead_result = lead(to);
+	pair<Array<int>, Array<int>> result;
+	Array<int> lead_result = lead(to);
 	if (isNoteOn) {
-		if (!last.second.empty()) {//noteOn last noteOns not empty
+		if (!last.second.isEmpty()) {//noteOn last noteOns not empty
 			result.first = last.second;//turn off last noteOns
 			result.second = lead_result;
 		}

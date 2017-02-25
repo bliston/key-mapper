@@ -18,47 +18,50 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	scalesLabel.setText("Scales Selection", dontSendNotification);
 	addAndMakeVisible(scalesLabel);
 
-	scalesComboBox.addItem("1: Major", 1);
-	scalesComboBox.addItem("2: Major Solo", 2);
-	scalesComboBox.addItem("3: Minor", 3);
-	scalesComboBox.addItem("4: Minor Solo", 4);
-	scalesComboBox.addItem("5: Harmonic Minor", 5);
-	scalesComboBox.addItem("6: Harmonic Minor Solo", 6);
-	scalesComboBox.addItem("7: Major Blues Solo", 7);
-	scalesComboBox.addItem("8: Minor Blues Solo", 8);
+	scalesComboBox.addItem("Major 1", 1);
+	scalesComboBox.addItem("Major Solo 1", 2);
+	scalesComboBox.addItem("Minor 1", 3);
+	scalesComboBox.addItem("Minor Solo 1", 4);
+	scalesComboBox.addItem("Harmonic Minor 1", 5);
+	scalesComboBox.addItem("Harmonic Minor Solo 1", 6);
+	scalesComboBox.addItem("Major Blues Solo 1", 7);
+	scalesComboBox.addItem("Minor Blues Solo 1", 8);
 
 	addAndMakeVisible(scalesComboBox);
-	scalesAttachment = new ComboBoxAttachment(valueTreeState, "scalesId", scalesComboBox);
+	scalesAttachment = new ValueTreeComboBoxAttachment(valueTreeState.state, &scalesComboBox, "scalesId");
 
 	keyLabel.setText("Key:", dontSendNotification);
 	addAndMakeVisible(keyLabel);
 
 	keyComboBox.addItem("C", 1);
-	keyComboBox.addItem("C#", 2);
+	keyComboBox.addItem("C#/Db", 2);
 	keyComboBox.addItem("D", 3);
-	keyComboBox.addItem("D#", 4);
+	keyComboBox.addItem("D#/Eb", 4);
 	keyComboBox.addItem("E", 5);
 	keyComboBox.addItem("F", 6);
-	keyComboBox.addItem("F#", 7);
+	keyComboBox.addItem("F#/Gb", 7);
 	keyComboBox.addItem("G", 8);
-	keyComboBox.addItem("G#", 9);
+	keyComboBox.addItem("G#/Ab", 9);
 	keyComboBox.addItem("A", 10);
-	keyComboBox.addItem("A#", 11);
+	keyComboBox.addItem("A#/Bb", 11);
 	keyComboBox.addItem("B", 12);
 
 	addAndMakeVisible(keyComboBox);
-	keyAttachment = new ComboBoxAttachment(valueTreeState, "key", keyComboBox);
+	keyAttachment = new ValueTreeComboBoxAttachment(valueTreeState.state, &keyComboBox, "key");
+
 
 
 	chordOctaveLabel.setText("Chord Octave", dontSendNotification);
 	addAndMakeVisible(chordOctaveLabel);
-
-	chordOctaveComboBox.addItem("2", 1);
-	chordOctaveComboBox.addItem("3", 2);
-	chordOctaveComboBox.addItem("4", 3);
+	chordOctaveComboBox.addItem("1", 1);
+	chordOctaveComboBox.addItem("2", 2);
+	chordOctaveComboBox.addItem("3", 3);
+	chordOctaveComboBox.addItem("4", 4);
+	chordOctaveComboBox.addItem("5", 5);
+	chordOctaveComboBox.addItem("6", 6);
 
 	addAndMakeVisible(chordOctaveComboBox);
-	chordOctaveAttachment = new ComboBoxAttachment(valueTreeState, "chordOctave", chordOctaveComboBox);
+	chordOctaveAttachment = new ValueTreeComboBoxAttachment(valueTreeState.state, &chordOctaveComboBox, "chordOctave");
 
 
 	chordSizeLabel.setText("Chord Size", dontSendNotification);
@@ -68,7 +71,8 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	chordSizeComboBox.addItem("4", 2);
 
 	addAndMakeVisible(chordSizeComboBox);
-	chordSizeAttachment = new ComboBoxAttachment(valueTreeState, "chordSize", chordSizeComboBox);
+	chordSizeAttachment = new ValueTreeComboBoxAttachment(valueTreeState.state, &chordSizeComboBox, "chordSize");
+
 
 
 	progressionLabel.setText("Progression: ex: 14526", dontSendNotification);

@@ -379,6 +379,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\MidiUtils.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Scale.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DiatonicChordProgressionMidiMap.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ScaleMidiMap.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\BlackAndWhiteMidiMap.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\MidiMap.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Chord.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SimpleVoiceLeader.cpp">
       <Filter>MiddlePlugin\Source</Filter>
     </ClCompile>
@@ -940,6 +964,9 @@
     <ClCompile Include="..\..\..\JUCE\modules\juce_core\containers\juce_DynamicObject.cpp">
       <Filter>Juce Modules\juce_core\containers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_core\containers\juce_ListenerList.cpp">
+      <Filter>Juce Modules\juce_core\containers</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_core\containers\juce_NamedValueSet.cpp">
       <Filter>Juce Modules\juce_core\containers</Filter>
     </ClCompile>
@@ -1088,6 +1115,9 @@
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_core\network\juce_URL.cpp">
+      <Filter>Juce Modules\juce_core\network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE\modules\juce_core\network\juce_WebInputStream.cpp">
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_core\streams\juce_BufferedInputStream.cpp">
@@ -2211,6 +2241,33 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\MidiUtils.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Scale.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DiatonicChordProgressionMidiMap.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ScaleMidiMap.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\BlackAndWhiteMidiMap.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MidiMap.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Chord.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ValueTreeComboBoxAttachment.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeLabelAttachment.h">
       <Filter>MiddlePlugin\Source</Filter>
     </ClInclude>
@@ -3109,6 +3166,9 @@
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\network\juce_URL.h">
+      <Filter>Juce Modules\juce_core\network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\JUCE\modules\juce_core\network\juce_WebInputStream.h">
       <Filter>Juce Modules\juce_core\network</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_core\streams\juce_BufferedInputStream.h">
