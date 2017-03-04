@@ -15,7 +15,7 @@
 #include "PluginProcessor.h"
 #include "ValueTreeComboBoxAttachment.h"
 #include "ValueTreeLabelAttachment.h"
-
+#include "CustomLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -25,8 +25,8 @@ class MiddlePluginAudioProcessorEditor  : public AudioProcessorEditor
 public:
 	enum
 	{
-		paramControlHeight = 40,
-		paramLabelWidth = 80,
+		paramControlHeight = 50,
+		paramLabelWidth = 100,
 		paramComponentWidth = 300
 	};
 
@@ -64,6 +64,8 @@ private:
 	Label progressionLabel;
 	Label progressionInputLabel;
 	ScopedPointer<ValueTreeLabelAttachment> progressionAttachment;
+    
+    CustomLookAndFeel lookAndFeel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessorEditor)
 };

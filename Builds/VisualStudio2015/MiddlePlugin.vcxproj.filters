@@ -379,6 +379,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\BinaryData.cpp">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MidiUtils.cpp">
       <Filter>MiddlePlugin\Source</Filter>
     </ClCompile>
@@ -2241,6 +2244,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\BinaryData.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AppColours.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CustomLookAndFeel.h">
+      <Filter>MiddlePlugin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\MidiUtils.h">
       <Filter>MiddlePlugin\Source</Filter>
     </ClInclude>

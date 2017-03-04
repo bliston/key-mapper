@@ -249,10 +249,10 @@
  #define JucePlugin_Build_STANDALONE       0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "MiddlePlugin"
+ #define JucePlugin_Name                   "Key Mapper"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "MiddlePlugin"
+ #define JucePlugin_Desc                   "Key Mapper"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "SongWish"
@@ -306,10 +306,10 @@
  #define JucePlugin_AUSubType              JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_AUExportPrefix
- #define JucePlugin_AUExportPrefix         MiddlePluginAU
+ #define JucePlugin_AUExportPrefix         KeyMapperAU
 #endif
 #ifndef  JucePlugin_AUExportPrefixQuoted
- #define JucePlugin_AUExportPrefixQuoted   "MiddlePluginAU"
+ #define JucePlugin_AUExportPrefixQuoted   "KeyMapperAU"
 #endif
 #ifndef  JucePlugin_AUManufacturerCode
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode

@@ -15,7 +15,8 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	: AudioProcessorEditor(parent),
 	valueTreeState(vts)
 {
-	scalesLabel.setText("Scales Selection", dontSendNotification);
+    CustomLookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
+	scalesLabel.setText("Scales", dontSendNotification);
 	addAndMakeVisible(scalesLabel);
 
 	scalesComboBox.addItem("Major 1", 1);

@@ -171,12 +171,16 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 			}
 		}
 		for (int n : notes.first) {
-			MidiMessage mm = MidiMessage::noteOff(channel, n);
-			events.addEvent(mm, time);
+            if (channel > 0 && channel <= 16 && isPositiveAndBelow (n, (int) 128)) {
+                MidiMessage mm = MidiMessage::noteOff(channel, n);
+                events.addEvent(mm, time);
+            }
 		}
 		for (int n : notes.second) {
-			MidiMessage mm = MidiMessage::noteOn(channel, n, m.getVelocity());
-			events.addEvent(mm, time);
+            if (channel > 0 && channel <= 16 && isPositiveAndBelow (n, (int) 128)) {
+                MidiMessage mm = MidiMessage::noteOn(channel, n, m.getVelocity());
+                events.addEvent(mm, time);
+            }
 		}
 		return events;
 	}

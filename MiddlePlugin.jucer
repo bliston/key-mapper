@@ -13,6 +13,11 @@
               companyEmail="info@songwish.ca">
   <MAINGROUP id="e3fIU7" name="MiddlePlugin">
     <GROUP id="{BCF81D7C-BA9A-6526-B5E5-30B964990CA5}" name="Source">
+      <FILE id="zbGIOl" name="BinaryData.cpp" compile="1" resource="0" file="Source/BinaryData.cpp"/>
+      <FILE id="HLB0gv" name="BinaryData.h" compile="0" resource="0" file="Source/BinaryData.h"/>
+      <FILE id="SEAtR1" name="AppColours.h" compile="0" resource="0" file="Source/AppColours.h"/>
+      <FILE id="vN72nl" name="CustomLookAndFeel.h" compile="0" resource="0"
+            file="Source/CustomLookAndFeel.h"/>
       <FILE id="NRPDkH" name="MidiUtils.cpp" compile="1" resource="0" file="Source/MidiUtils.cpp"/>
       <FILE id="DMhhh3" name="MidiUtils.h" compile="0" resource="0" file="Source/MidiUtils.h"/>
       <FILE id="Ytv6BQ" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>

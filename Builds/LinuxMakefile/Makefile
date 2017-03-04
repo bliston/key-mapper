@@ -64,6 +64,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/BinaryData_5ba7f54.o \
   $(JUCE_OBJDIR)/MidiUtils_5906d771.o \
   $(JUCE_OBJDIR)/Scale_2e3d1fab.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionAndScaleMidiMap_d0d249f9.o \
@@ -113,6 +114,11 @@ clean:
 strip:
 	@echo Stripping MiddlePlugin
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
+
+$(JUCE_OBJDIR)/BinaryData_5ba7f54.o: ../../Source/BinaryData.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BinaryData.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MidiUtils_5906d771.o: ../../Source/MidiUtils.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
