@@ -10,9 +10,9 @@
     <key>CFBundleIdentifier</key>
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleName</key>
-    <string>MiddlePlugin</string>
+    <string>Key Mapper</string>
     <key>CFBundleDisplayName</key>
-    <string>MiddlePlugin</string>
+    <string>Key Mapper</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>
@@ -29,17 +29,17 @@
     <array>
       <dict>
         <key>name</key>
-        <string>SongWish: MiddlePlugin</string>
+        <string>SongWish Inc.: Key Mapper</string>
         <key>description</key>
-        <string>MiddlePlugin</string>
+        <string>Key Mapper</string>
         <key>factoryFunction</key>
-        <string>MiddlePluginAUFactory</string>
+        <string>KeyMapperAUFactory</string>
         <key>manufacturer</key>
         <string>SOWI</string>
         <key>type</key>
         <string>aumi</string>
         <key>subtype</key>
-        <string>Midl</string>
+        <string>Kmpr</string>
         <key>version</key>
         <integer>1</integer>
       </dict>

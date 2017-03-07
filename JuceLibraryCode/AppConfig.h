@@ -255,7 +255,7 @@
  #define JucePlugin_Desc                   "Key Mapper"
 #endif
 #ifndef  JucePlugin_Manufacturer
- #define JucePlugin_Manufacturer           "SongWish"
+ #define JucePlugin_Manufacturer           "SongWish Inc."
 #endif
 #ifndef  JucePlugin_ManufacturerWebsite
  #define JucePlugin_ManufacturerWebsite    "www.songwish.ca"
@@ -267,7 +267,7 @@
  #define JucePlugin_ManufacturerCode       0x534f5749 // 'SOWI'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             0x4d69646c // 'Midl'
+ #define JucePlugin_PluginCode             0x4b6d7072 // 'Kmpr'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                0
@@ -315,7 +315,7 @@
  #define JucePlugin_AUManufacturerCode     JucePlugin_ManufacturerCode
 #endif
 #ifndef  JucePlugin_CFBundleIdentifier
- #define JucePlugin_CFBundleIdentifier     ca.songwish.middleplugin
+ #define JucePlugin_CFBundleIdentifier     ca.songwish.key-mapper
 #endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_None
@@ -333,7 +333,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.yourcompany.MiddlePlugin
+ #define JucePlugin_AAXIdentifier          ca.songwish.key-mapper
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode

@@ -10,9 +10,9 @@
     <key>CFBundleIdentifier</key>
     <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
     <key>CFBundleName</key>
-    <string>MiddlePlugin</string>
+    <string>Key Mapper</string>
     <key>CFBundleDisplayName</key>
-    <string>MiddlePlugin</string>
+    <string>Key Mapper</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>
