@@ -16,7 +16,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	valueTreeState(vts)
 {
     CustomLookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
-	scalesLabel.setText("Scales", dontSendNotification);
+	scalesLabel.setText("Scales:", dontSendNotification);
 	addAndMakeVisible(scalesLabel);
 
 	scalesComboBox.addItem("Major 1", 1);
@@ -52,7 +52,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 
 
 
-	chordOctaveLabel.setText("Chord Octave", dontSendNotification);
+	chordOctaveLabel.setText("Chord Octave:", dontSendNotification);
 	addAndMakeVisible(chordOctaveLabel);
 	chordOctaveComboBox.addItem("1", 1);
 	chordOctaveComboBox.addItem("2", 2);
@@ -65,7 +65,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	chordOctaveAttachment = new ValueTreeComboBoxAttachment(valueTreeState.state, &chordOctaveComboBox, "chordOctave");
 
 
-	chordSizeLabel.setText("Chord Size", dontSendNotification);
+	chordSizeLabel.setText("Chord Size:", dontSendNotification);
 	addAndMakeVisible(chordSizeLabel);
 
 	chordSizeComboBox.addItem("3", 1);
@@ -76,7 +76,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 
 
 
-	progressionLabel.setText("Progression: ex: 14526", dontSendNotification);
+	progressionLabel.setText("Progression (ex: 14526):", dontSendNotification);
 	addAndMakeVisible(progressionLabel);
 
 	progressionInputLabel.setEditable(true);
