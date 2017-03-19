@@ -493,6 +493,16 @@ public:
         g.strokePath (p, PathStrokeType (1.35f));
     }
 
+    void positionComboBoxText (ComboBox& box, Label& label) override
+    {
+        label.setBounds (1, 1,
+                         box.getWidth() + 3 - box.getHeight(),
+                         box.getHeight() - 2);
+        
+        label.setFont (getComboBoxFont (box));
+        label.setJustificationType(Justification::centred);
+    }
+    
     void drawPopupMenuItem (Graphics& g, const Rectangle<int>& area,
                                             const bool isSeparator, const bool isActive,
                                             const bool isHighlighted, const bool isTicked,
