@@ -99,8 +99,7 @@ void MiddlePluginAudioProcessor::changeProgramName (int index, const String& new
 //==============================================================================
 void MiddlePluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+
 }
 
 void MiddlePluginAudioProcessor::releaseResources()
@@ -188,20 +187,7 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 
 void MiddlePluginAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-	String scalesId = decodeScalesProperty(parameters.state.getProperty("scalesId").toString());
-	int key = decodeKeyProperty(parameters.state.getProperty("key").toString());
-	int chordOctave = decodeChordOctaveProperty(parameters.state.getProperty("chordOctave").toString());
-	int chordSize = decodeChordSizeProperty(parameters.state.getProperty("chordSize").toString());
-	Array<int> progression = { 1,2,3,4,5,6,7 };
-	if (parameters.state.hasProperty("progressionString"))
-	{
-		progression = decodeProgressionProperty(parameters.state.getProperty("progressionString").toString());
-	}
-	mc.setPreset(scalesId);
-	mc.setKey(key);
-	mc.setChordOctave(chordOctave);
-	mc.setChordSize(chordSize);
-	mc.setProgression(progression);
+	updateMiddleCore();
 	buffer.clear();
 
 	MidiBuffer processedMidi;
@@ -245,8 +231,13 @@ void MiddlePluginAudioProcessor::setStateInformation(const void* data, int sizeI
 	ScopedPointer<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 
 	if (xmlState != nullptr)
+	{
 		if (xmlState->hasTagName(parameters.state.getType()))
+		{
 			parameters.state = ValueTree::fromXml(*xmlState);
+			updateMiddleCore();
+		}	
+	}
 }
 
 //==============================================================================
@@ -293,4 +284,22 @@ Array<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
 		digits.add(d + 1);
 	}
 	return digits;
+}
+
+void MiddlePluginAudioProcessor::updateMiddleCore()
+{
+	String scalesId = decodeScalesProperty(parameters.state.getProperty("scalesId").toString());
+	int key = decodeKeyProperty(parameters.state.getProperty("key").toString());
+	int chordOctave = decodeChordOctaveProperty(parameters.state.getProperty("chordOctave").toString());
+	int chordSize = decodeChordSizeProperty(parameters.state.getProperty("chordSize").toString());
+	Array<int> progression;
+	if (parameters.state.hasProperty("progressionString"))
+	{
+		progression = decodeProgressionProperty(parameters.state.getProperty("progressionString").toString());
+	}
+	mc.setPreset(scalesId);
+	mc.setKey(key);
+	mc.setChordOctave(chordOctave);
+	mc.setChordSize(chordSize);
+	mc.setProgression(progression);
 }
