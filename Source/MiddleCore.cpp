@@ -110,7 +110,6 @@ pair<Array<int>, Array<int>> MiddleCore::get(int val, bool isNoteOn)
 	Array<int> notes = midiMap->map(val);
 	if (keyInfo.isBlack) {
 		result = voiceLeader->leadInto(notes, isNoteOn, keyInfo.index == lastBlackIndex);
-		result = voiceLeader->leadInto(notes, isNoteOn, keyInfo.index == lastBlackIndex); //hack for now
 		lastBlackIndex = isNoteOn ? keyInfo.index : lastBlackIndex;
 	}
 	else {

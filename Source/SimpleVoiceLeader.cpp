@@ -11,12 +11,14 @@ Author:  blist
 #include "SimpleVoiceLeader.h"
 SimpleVoiceLeader::SimpleVoiceLeader()
 {
-	setChordReferenceNoteValue(36);
+	SimpleVoiceLeader(36);
 }
 
 SimpleVoiceLeader::SimpleVoiceLeader(int chordReferenceNoteVal)
 {
 	setChordReferenceNoteValue(chordReferenceNoteVal);
+	last.first = {};
+	last.second = { 36, 38, 40 }; //dummy init
 }
 
 SimpleVoiceLeader::~SimpleVoiceLeader()
@@ -63,7 +65,7 @@ pair<Array<int>, Array<int>> SimpleVoiceLeader::leadInto(Array<int> to, bool isN
 		}
 		last = result;
 	}
-	else {
+	else {//noteOff
 		result.first = {};
 		if (release) {
 			result.first = last.second;
