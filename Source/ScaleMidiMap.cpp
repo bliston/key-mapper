@@ -12,12 +12,17 @@
 
 ScaleMidiMap::ScaleMidiMap()
 {
-
+	scaleSizeDegreeOffsetMap[5] = -12;
+	scaleSizeDegreeOffsetMap[6] = -6;
+	scaleSizeDegreeOffsetMap[7] = 0;
+	setShouldNormalizeTheOutput(false);
 }
-ScaleMidiMap::ScaleMidiMap(Scale s, int key)
+ScaleMidiMap::ScaleMidiMap(Scale s, int key, bool normalizeTheOutput)
 {
+	ScaleMidiMap();
 	setScale(s);
 	setKey(key);
+	setShouldNormalizeTheOutput(normalizeTheOutput);
 }
 ScaleMidiMap::~ScaleMidiMap()
 {
@@ -42,10 +47,16 @@ int ScaleMidiMap::getKey()
 Array<int> ScaleMidiMap::map(int note)
 {
 	piano_key_info keyInfo = MidiUtils::pianoKeyInfo(note);
-	return { scaleValueAtIndex(keyInfo.index) };
+	int index = shouldNormalizeTheOutput ? keyInfo.index + scaleSizeDegreeOffsetMap[scale.size()] : keyInfo.index;
+	return { scaleValueAtIndex(index) };
 }
 
 int ScaleMidiMap::scaleValueAtIndex(int index)
 {
 	return { key + MidiUtils::scaleNoteValueAtIndex(scale, index) };
+}
+
+void ScaleMidiMap::setShouldNormalizeTheOutput(bool shouldNormalize)
+{
+	shouldNormalizeTheOutput = shouldNormalize;
 }

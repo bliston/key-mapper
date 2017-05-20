@@ -14,6 +14,7 @@ DiatonicChordProgressionAndScaleMidiMap::DiatonicChordProgressionAndScaleMidiMap
 {
 	chordMidiMap = new DiatonicChordProgressionMidiMap();
 	scaleMidiMap = new ScaleMidiMap();
+	scaleMidiMap->setShouldNormalizeTheOutput(true);
 	midiMap = new BlackAndWhiteMidiMap(chordMidiMap, scaleMidiMap);
 }
 Array<int> DiatonicChordProgressionAndScaleMidiMap::map(int note)
