@@ -164,7 +164,7 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 				blackNotesOn.add(m.getNoteNumber());
 				if (blackNotesOn.size() > 2) {
 					int minBlack = *std::min_element(blackNotesOn.begin(), blackNotesOn.end());
-					mc.setChordAnchorIndex(minBlack);
+					//mc.setChordAnchorIndex(minBlack);
 					return allBlackNotesOff(time);
 				}
 			}

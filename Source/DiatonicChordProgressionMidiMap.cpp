@@ -15,7 +15,7 @@ DiatonicChordProgressionMidiMap::DiatonicChordProgressionMidiMap()
 	key = 4;
 	chordOctave = 4;
 	chordSize = 4;
-	setChordAnchorIndex(37);
+	setChordAnchorIndex(25);
 	scaleMidiMap.setScale(MidiUtils::WHITE_INDICES);
 }
 
@@ -84,7 +84,7 @@ void DiatonicChordProgressionMidiMap::setChordSize(int size)
 void DiatonicChordProgressionMidiMap::setChordAnchorIndex(int blackNoteValue)
 {
 	piano_key_info pianoKey = MidiUtils::pianoKeyInfo(blackNoteValue);
-	chordAnchorIndex = pianoKey.index;
+	chordAnchorIndex = pianoKey.index - 1;
 
 }
 
