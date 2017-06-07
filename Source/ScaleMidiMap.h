@@ -12,18 +12,17 @@
 #define SCALEMIDIMAP_H_INCLUDED
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MidiMap.h"
-#include "Scale.h"
 #include <math.h>
 #include <map>
 #include <stdexcept>
-#include "MidiUtils.h"
+#include "MidiFunctions.h"
 class ScaleMidiMap : public MidiMap {
 public:
 	ScaleMidiMap();
-	ScaleMidiMap(Scale s, int key, bool normalizeOutput);
+	ScaleMidiMap(Array<int> s, int key, bool normalizeOutput);
     ~ScaleMidiMap();
-    void setScale(Scale s);
-	Scale getScale();
+    void setScale(Array<int> s);
+	Array<int> getScale();
 	void setKey(int k);
 	int getKey();
     Array<int> map(int index);
@@ -32,7 +31,7 @@ public:
 	void setShouldNormalizeTheOutput(bool normalize);
 
 private:
-    Scale scale;
+    Array<int> scale;
 	int key;
 	std::map<int, int> scaleSizeDegreeOffsetMap;
 	bool shouldNormalizeTheOutput;

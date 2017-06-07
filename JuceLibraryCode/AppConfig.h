@@ -22,6 +22,7 @@
 // [END_USER_CODE_SECTION]
 
 //==============================================================================
+#define JUCE_MODULE_AVAILABLE_Bach                          1
 #define JUCE_MODULE_AVAILABLE_juce_audio_basics             1
 #define JUCE_MODULE_AVAILABLE_juce_audio_devices            1
 #define JUCE_MODULE_AVAILABLE_juce_audio_formats            1

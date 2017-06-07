@@ -11,6 +11,24 @@
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Juce Modules\Bach">
+      <UniqueIdentifier>{F37D4E1D-EBD9-4896-15DC-585EF133F288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\Bach\Bach">
+      <UniqueIdentifier>{DA559912-F8F4-92C3-F7CA-E85A2CB241A9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\Bach\Bach\MusicalStructures">
+      <UniqueIdentifier>{D8BCD4F9-1CAA-ED05-DE3B-C79432056C07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\Bach\Bach\MusicalStructures\Chord">
+      <UniqueIdentifier>{39695E53-B52D-C57C-E6CC-03B18213FA1C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\Bach\Bach\MusicalStructures\Note">
+      <UniqueIdentifier>{C5E6516D-11A6-C3A6-B760-83970D4971AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Juce Modules\Bach\Bach\Utils">
+      <UniqueIdentifier>{6F4C8EA5-655A-0702-2570-F8AFEFB28BA1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Juce Modules\juce_audio_basics">
       <UniqueIdentifier>{3247ED97-A75A-F50B-8CCC-46155E895806}</UniqueIdentifier>
     </Filter>
@@ -382,10 +400,7 @@
     <ClCompile Include="..\..\Source\BinaryData.cpp">
       <Filter>Key Mapper\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MidiUtils.cpp">
-      <Filter>Key Mapper\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Scale.cpp">
+    <ClCompile Include="..\..\Source\MidiFunctions.cpp">
       <Filter>Key Mapper\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.cpp">
@@ -403,9 +418,6 @@
     <ClCompile Include="..\..\Source\MidiMap.cpp">
       <Filter>Key Mapper\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Chord.cpp">
-      <Filter>Key Mapper\Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\SimpleVoiceLeader.cpp">
       <Filter>Key Mapper\Source</Filter>
     </ClCompile>
@@ -420,6 +432,27 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
       <Filter>Key Mapper\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\Chord.cpp">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\ChordNameToMidiNotes.cpp">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\MidiNotesToChordName.cpp">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.cpp">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\Utils\MidiUtils.cpp">
+      <Filter>Juce Modules\Bach\Bach\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach.cpp">
+      <Filter>Juce Modules\Bach</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach.mm">
+      <Filter>Juce Modules\Bach</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2197,6 +2230,9 @@
     <ClCompile Include="..\..\..\JUCE\modules\juce_video\juce_video.mm">
       <Filter>Juce Modules\juce_video</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\Bach.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\juce_audio_basics.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
@@ -2253,10 +2289,7 @@
     <ClInclude Include="..\..\Source\CustomLookAndFeel.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MidiUtils.h">
-      <Filter>Key Mapper\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Scale.h">
+    <ClInclude Include="..\..\Source\MidiFunctions.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.h">
@@ -2272,9 +2305,6 @@
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MidiMap.h">
-      <Filter>Key Mapper\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Chord.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeComboBoxAttachment.h">
@@ -2297,6 +2327,30 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
       <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\Chord.h">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\ChordNameToMidiNotes.h">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\MidiNotesToChordName.h">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Chord</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.h">
+      <Filter>Juce Modules\Bach\Bach\MusicalStructures\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\Utils\MidiUtils.h">
+      <Filter>Juce Modules\Bach\Bach\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\BachCommon.h">
+      <Filter>Juce Modules\Bach\Bach</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach.h">
+      <Filter>Juce Modules\Bach</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach.h">
+      <Filter>Juce Modules\Bach</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -4238,6 +4292,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\modules\Bach\README.md">
+      <Filter>Juce Modules\Bach</Filter>
+    </None>
     <None Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>Juce Modules\juce_audio_formats\codecs\flac</Filter>
     </None>

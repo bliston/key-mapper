@@ -16,7 +16,7 @@ DiatonicChordProgressionMidiMap::DiatonicChordProgressionMidiMap()
 	chordOctave = 4;
 	chordSize = 4;
 	setChordAnchorIndex(25);
-	scaleMidiMap.setScale(MidiUtils::WHITE_INDICES);
+	scaleMidiMap.setScale(MidiFunctions::WHITE_INDICES);
 }
 
 DiatonicChordProgressionMidiMap::~DiatonicChordProgressionMidiMap()
@@ -33,7 +33,7 @@ Array<int> DiatonicChordProgressionMidiMap::getProgression()
 	return progression;
 }
 
-void DiatonicChordProgressionMidiMap::setScale(Scale s)
+void DiatonicChordProgressionMidiMap::setScale(Array<int> s)
 {
 	scaleMidiMap.setScale(s);
 }
@@ -41,15 +41,15 @@ void DiatonicChordProgressionMidiMap::setScale(Scale s)
 Array<int> DiatonicChordProgressionMidiMap::map(int note)
 {
 	Array<int> _progression = getProgression();
-	piano_key_info keyInfo = MidiUtils::pianoKeyInfo(note);
-	int blackKeyIndexPosMod = MidiUtils::posMod(keyInfo.index, _progression.size());
-	int blackAnchorIndexPosMod = MidiUtils::posMod(chordAnchorIndex, _progression.size());
-	int modChordIndex = MidiUtils::posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, _progression.size());
-	Chord chord = getChord(_progression[modChordIndex]);
+	piano_key_info keyInfo = MidiFunctions::pianoKeyInfo(note);
+	int blackKeyIndexPosMod = MidiFunctions::posMod(keyInfo.index, _progression.size());
+	int blackAnchorIndexPosMod = MidiFunctions::posMod(chordAnchorIndex, _progression.size());
+	int modChordIndex = MidiFunctions::posMod(blackKeyIndexPosMod - blackAnchorIndexPosMod, _progression.size());
+	Array<int> chord = getChord(_progression[modChordIndex]);
 	return chord;
 }
 
-Chord DiatonicChordProgressionMidiMap::getChord(int degree)
+Array<int> DiatonicChordProgressionMidiMap::getChord(int degree)
 {
 	int index = degree - 1;
 	int one = scaleMidiMap.scaleValueAtIndex(index);
@@ -59,8 +59,8 @@ Chord DiatonicChordProgressionMidiMap::getChord(int degree)
 	int five = scaleMidiMap.scaleValueAtIndex(index);
 	index += 2;
 	int seven = scaleMidiMap.scaleValueAtIndex(index);
-	Chord triad = { one, three, five };
-	Chord seventh = { one, three, five, seven };
+	Array<int> triad = { one, three, five };
+	Array<int> seventh = { one, three, five, seven };
 
 	return chordSize == 3 ? triad : seventh;
 }
@@ -83,7 +83,7 @@ void DiatonicChordProgressionMidiMap::setChordSize(int size)
 
 void DiatonicChordProgressionMidiMap::setChordAnchorIndex(int blackNoteValue)
 {
-	piano_key_info pianoKey = MidiUtils::pianoKeyInfo(blackNoteValue);
+	piano_key_info pianoKey = MidiFunctions::pianoKeyInfo(blackNoteValue);
 	chordAnchorIndex = pianoKey.index - 1;
 
 }

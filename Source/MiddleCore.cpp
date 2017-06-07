@@ -99,14 +99,14 @@ void MiddleCore::setChordAnchorIndex(int blackNoteValue)
 
 bool MiddleCore::isBlack(int val)
 {
-	return MidiUtils::isBlack(val);
+	return MidiFunctions::isBlack(val);
 }
 
 pair<Array<int>, Array<int>> MiddleCore::get(int val, bool isNoteOn)
 {
 	voiceLeader->setChordReferenceNoteValue(midiMap->getChordMidiMap()->getChordReferenceNoteValue());
 	pair<Array<int>, Array<int>> result;
-	piano_key_info keyInfo = MidiUtils::pianoKeyInfo(val);
+	piano_key_info keyInfo = MidiFunctions::pianoKeyInfo(val);
 	Array<int> notes = midiMap->map(val);
 	if (keyInfo.isBlack) {
 		result = voiceLeader->leadInto(notes, isNoteOn, keyInfo.index == lastBlackIndex);

@@ -18,10 +18,9 @@
       <FILE id="SEAtR1" name="AppColours.h" compile="0" resource="0" file="Source/AppColours.h"/>
       <FILE id="vN72nl" name="CustomLookAndFeel.h" compile="0" resource="0"
             file="Source/CustomLookAndFeel.h"/>
-      <FILE id="NRPDkH" name="MidiUtils.cpp" compile="1" resource="0" file="Source/MidiUtils.cpp"/>
-      <FILE id="DMhhh3" name="MidiUtils.h" compile="0" resource="0" file="Source/MidiUtils.h"/>
-      <FILE id="Ytv6BQ" name="Scale.cpp" compile="1" resource="0" file="Source/Scale.cpp"/>
-      <FILE id="AiAXaq" name="Scale.h" compile="0" resource="0" file="Source/Scale.h"/>
+      <FILE id="NRPDkH" name="MidiFunctions.cpp" compile="1" resource="0"
+            file="Source/MidiFunctions.cpp"/>
+      <FILE id="DMhhh3" name="MidiFunctions.h" compile="0" resource="0" file="Source/MidiFunctions.h"/>
       <FILE id="lif9z8" name="DiatonicChordProgressionAndScaleMidiMap.cpp"
             compile="1" resource="0" file="Source/DiatonicChordProgressionAndScaleMidiMap.cpp"/>
       <FILE id="cVnDUc" name="DiatonicChordProgressionAndScaleMidiMap.h"
@@ -39,8 +38,6 @@
             file="Source/BlackAndWhiteMidiMap.h"/>
       <FILE id="eNWTzT" name="MidiMap.cpp" compile="1" resource="0" file="Source/MidiMap.cpp"/>
       <FILE id="Fg3TXw" name="MidiMap.h" compile="0" resource="0" file="Source/MidiMap.h"/>
-      <FILE id="o4FLtr" name="Chord.cpp" compile="1" resource="0" file="Source/Chord.cpp"/>
-      <FILE id="sGTdyA" name="Chord.h" compile="0" resource="0" file="Source/Chord.h"/>
       <FILE id="XihzyB" name="ValueTreeComboBoxAttachment.h" compile="0"
             resource="0" file="Source/ValueTreeComboBoxAttachment.h"/>
       <FILE id="XslUcH" name="ValueTreeLabelAttachment.h" compile="0" resource="0"
@@ -85,6 +82,7 @@
         <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="../JUCE/modules"/>
+        <MODULEPATH id="Bach" path="modules"/>
       </MODULEPATHS>
     </VS2015>
     <XCODE_MAC targetFolder="Builds/MacOSX">
@@ -107,6 +105,7 @@
         <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="Bach" path="modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
@@ -129,10 +128,12 @@
         <MODULEPATH id="juce_audio_formats" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="../JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="../JUCE/modules"/>
+        <MODULEPATH id="Bach" path="modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULE id="Bach" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>

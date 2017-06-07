@@ -33,7 +33,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=0.0.2 -DJUCE_APP_VERSION_HEX=0x2 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../JuceLibraryCode -I../../../JUCE/modules $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=0.0.2 -DJUCE_APP_VERSION_HEX=0x2 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../JuceLibraryCode -I../../modules -I../../../JUCE/modules $(CPPFLAGS)
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -g -ggdb -fPIC -O0 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -Wl,--no-undefined -shared $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt  $(LDFLAGS)
@@ -53,7 +53,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=0.0.2 -DJUCE_APP_VERSION_HEX=0x2 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../JuceLibraryCode -I../../../JUCE/modules $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_6D53C8B4=1 -DJUCE_APP_VERSION=0.0.2 -DJUCE_APP_VERSION_HEX=0x2 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../JuceLibraryCode -I../../modules -I../../../JUCE/modules $(CPPFLAGS)
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -O3 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) -Wl,--no-undefined -shared -fvisibility=hidden $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -lGL -ldl -lpthread -lrt  $(LDFLAGS)
@@ -65,19 +65,18 @@ endif
 
 OBJECTS := \
   $(JUCE_OBJDIR)/BinaryData_5ba7f54.o \
-  $(JUCE_OBJDIR)/MidiUtils_5906d771.o \
-  $(JUCE_OBJDIR)/Scale_2e3d1fab.o \
+  $(JUCE_OBJDIR)/MidiFunctions_9eae0bdb.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionAndScaleMidiMap_d0d249f9.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionMidiMap_b12009ac.o \
   $(JUCE_OBJDIR)/ScaleMidiMap_f70e71da.o \
   $(JUCE_OBJDIR)/BlackAndWhiteMidiMap_60c9fb13.o \
   $(JUCE_OBJDIR)/MidiMap_b704c55c.o \
-  $(JUCE_OBJDIR)/Chord_e02249bd.o \
   $(JUCE_OBJDIR)/SimpleVoiceLeader_3731d4aa.o \
   $(JUCE_OBJDIR)/VoiceLeader_c12299bc.o \
   $(JUCE_OBJDIR)/MiddleCore_5673365d.o \
   $(JUCE_OBJDIR)/PluginProcessor_a059e380.o \
   $(JUCE_OBJDIR)/PluginEditor_94d4fb09.o \
+  $(JUCE_OBJDIR)/Bach_f6e18aed.o \
   $(JUCE_OBJDIR)/juce_audio_basics_6b797ca1.o \
   $(JUCE_OBJDIR)/juce_audio_devices_a742c38b.o \
   $(JUCE_OBJDIR)/juce_audio_formats_5a29c68a.o \
@@ -120,14 +119,9 @@ $(JUCE_OBJDIR)/BinaryData_5ba7f54.o: ../../Source/BinaryData.cpp
 	@echo "Compiling BinaryData.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/MidiUtils_5906d771.o: ../../Source/MidiUtils.cpp
+$(JUCE_OBJDIR)/MidiFunctions_9eae0bdb.o: ../../Source/MidiFunctions.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling MidiUtils.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/Scale_2e3d1fab.o: ../../Source/Scale.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Scale.cpp"
+	@echo "Compiling MidiFunctions.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/DiatonicChordProgressionAndScaleMidiMap_d0d249f9.o: ../../Source/DiatonicChordProgressionAndScaleMidiMap.cpp
@@ -155,11 +149,6 @@ $(JUCE_OBJDIR)/MidiMap_b704c55c.o: ../../Source/MidiMap.cpp
 	@echo "Compiling MidiMap.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/Chord_e02249bd.o: ../../Source/Chord.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling Chord.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/SimpleVoiceLeader_3731d4aa.o: ../../Source/SimpleVoiceLeader.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SimpleVoiceLeader.cpp"
@@ -183,6 +172,11 @@ $(JUCE_OBJDIR)/PluginProcessor_a059e380.o: ../../Source/PluginProcessor.cpp
 $(JUCE_OBJDIR)/PluginEditor_94d4fb09.o: ../../Source/PluginEditor.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling PluginEditor.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Bach_f6e18aed.o: ../../JuceLibraryCode/Bach.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Bach.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/juce_audio_basics_6b797ca1.o: ../../JuceLibraryCode/juce_audio_basics.cpp

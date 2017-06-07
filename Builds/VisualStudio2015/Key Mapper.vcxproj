@@ -57,7 +57,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\modules;..\..\..\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=0.0.2;JUCE_APP_VERSION_HEX=0x2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -98,7 +98,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\modules;..\..\..\JUCE\modules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCER_VS2015_78A5022=1;JUCE_APP_VERSION=0.0.2;JUCE_APP_VERSION_HEX=0x2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -132,19 +132,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\BinaryData.cpp"/>
-    <ClCompile Include="..\..\Source\MidiUtils.cpp"/>
-    <ClCompile Include="..\..\Source\Scale.cpp"/>
+    <ClCompile Include="..\..\Source\MidiFunctions.cpp"/>
     <ClCompile Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.cpp"/>
     <ClCompile Include="..\..\Source\DiatonicChordProgressionMidiMap.cpp"/>
     <ClCompile Include="..\..\Source\ScaleMidiMap.cpp"/>
     <ClCompile Include="..\..\Source\BlackAndWhiteMidiMap.cpp"/>
     <ClCompile Include="..\..\Source\MidiMap.cpp"/>
-    <ClCompile Include="..\..\Source\Chord.cpp"/>
     <ClCompile Include="..\..\Source\SimpleVoiceLeader.cpp"/>
     <ClCompile Include="..\..\Source\VoiceLeader.cpp"/>
     <ClCompile Include="..\..\Source\MiddleCore.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\Chord.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\ChordNameToMidiNotes.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\MidiNotesToChordName.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\Utils\MidiUtils.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1788,6 +1804,7 @@
     <ClCompile Include="..\..\..\JUCE\modules\juce_video\juce_video.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\Bach.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\juce_audio_formats.cpp"/>
@@ -1808,14 +1825,12 @@
     <ClInclude Include="..\..\Source\BinaryData.h"/>
     <ClInclude Include="..\..\Source\AppColours.h"/>
     <ClInclude Include="..\..\Source\CustomLookAndFeel.h"/>
-    <ClInclude Include="..\..\Source\MidiUtils.h"/>
-    <ClInclude Include="..\..\Source\Scale.h"/>
+    <ClInclude Include="..\..\Source\MidiFunctions.h"/>
     <ClInclude Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.h"/>
     <ClInclude Include="..\..\Source\DiatonicChordProgressionMidiMap.h"/>
     <ClInclude Include="..\..\Source\ScaleMidiMap.h"/>
     <ClInclude Include="..\..\Source\BlackAndWhiteMidiMap.h"/>
     <ClInclude Include="..\..\Source\MidiMap.h"/>
-    <ClInclude Include="..\..\Source\Chord.h"/>
     <ClInclude Include="..\..\Source\ValueTreeComboBoxAttachment.h"/>
     <ClInclude Include="..\..\Source\ValueTreeLabelAttachment.h"/>
     <ClInclude Include="..\..\Source\SimpleVoiceLeader.h"/>
@@ -1823,6 +1838,14 @@
     <ClInclude Include="..\..\Source\MiddleCore.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\Chord.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\ChordNameToMidiNotes.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\MidiNotesToChordName.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\Utils\MidiUtils.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\BachCommon.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h"/>
@@ -2471,6 +2494,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\modules\Bach\README.md"/>
     <None Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\JUCE\modules\juce_audio_plugin_client\AU\AUResources.r"/>

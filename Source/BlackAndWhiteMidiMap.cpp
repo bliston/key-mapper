@@ -37,6 +37,6 @@ MidiMap* BlackAndWhiteMidiMap::getWhiteMidiMap()
 }
 Array<int> BlackAndWhiteMidiMap::map(int note)
 {
-	bool isBlack = MidiUtils::isBlack(note);
+	bool isBlack = MidiFunctions::isBlack(note);
 	return isBlack ? getBlackMidiMap()->map(note) : getWhiteMidiMap()->map(note);
 }

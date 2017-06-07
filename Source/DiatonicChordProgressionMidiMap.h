@@ -20,21 +20,19 @@
 #include "SimpleVoiceLeader.h"
 #include <sstream>
 #include "MidiMap.h"
-#include "Chord.h"
-#include "Scale.h"
 #include "ScaleMidiMap.h"
-#include "MidiUtils.h"
+#include "MidiFunctions.h"
 
 class DiatonicChordProgressionMidiMap : public MidiMap
 {
 public:
 	DiatonicChordProgressionMidiMap();
 	~DiatonicChordProgressionMidiMap();
-	void setScale(Scale _chordScale);
+	void setScale(Array<int> _chordScale);
 	void setProgression(Array<int> _progression);
 	Array<int> getProgression();
 	Array<int> map(int index);
-	Chord getChord(int degree);
+	Array<int> getChord(int degree);
 	void setKey(int k);
 	void setChordOctave(int oct);
 	void setChordSize(int size);

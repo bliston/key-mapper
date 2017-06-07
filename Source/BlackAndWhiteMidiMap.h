@@ -15,7 +15,7 @@
 #include <stdexcept>
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MidiMap.h"
-#include "MidiUtils.h"
+#include "MidiFunctions.h"
 using namespace std;
 class BlackAndWhiteMidiMap : public MidiMap {
 public:

@@ -8,25 +8,25 @@
   ==============================================================================
 */
 
-#include "MidiUtils.h"
-const Scale MidiUtils::WHITE_INDICES = { 0, 2, 4, 5, 7, 9, 11 };
-const Scale MidiUtils::BLACK_INDICES = { 1, 3, 6, 8, 10 };
-piano_key_info MidiUtils::pianoKeyInfo(int val)
+#include "MidiFunctions.h"
+const Array<int> MidiFunctions::WHITE_INDICES = { 0, 2, 4, 5, 7, 9, 11 };
+const Array<int> MidiFunctions::BLACK_INDICES = { 1, 3, 6, 8, 10 };
+piano_key_info MidiFunctions::pianoKeyInfo(int val)
 {
-	bool black = MidiUtils::isBlack(val);
-	Scale scale;
-	scale = black ? MidiUtils::BLACK_INDICES : MidiUtils::WHITE_INDICES;
-	int index = MidiUtils::scaleIndexOfNoteValue(scale, val);
+	bool black = MidiFunctions::isBlack(val);
+	Array<int> scale;
+	scale = black ? MidiFunctions::BLACK_INDICES : MidiFunctions::WHITE_INDICES;
+	int index = MidiFunctions::scaleIndexOfNoteValue(scale, val);
 	piano_key_info result;
 	result.isBlack = black;
 	result.index = index;
 	return result;
 }
-int MidiUtils::posMod(int m, int n)
+int MidiFunctions::posMod(int m, int n)
 {
 	return (m % n + n) % n;
 }
-bool MidiUtils::isBlack(int val)
+bool MidiFunctions::isBlack(int val)
 {
 	bool result;
 	switch (val % 12) {
@@ -44,7 +44,7 @@ bool MidiUtils::isBlack(int val)
 	}
 	return result;
 }
-int MidiUtils::scaleNoteValueAtIndex(Scale scale, int index)
+int MidiFunctions::scaleNoteValueAtIndex(Array<int> scale, int index)
 {
 	int n = scale.size();
 	int i = index;
@@ -53,7 +53,7 @@ int MidiUtils::scaleNoteValueAtIndex(Scale scale, int index)
 	int result = i >= 0 ? posResult : negResult;
 	return result;
 }
-int MidiUtils::scaleIndexOfNoteValue(Array<int> scale, int val)
+int MidiFunctions::scaleIndexOfNoteValue(Array<int> scale, int val)
 {
 	int modIndex = indexOf(scale, val % 12);
 	int numLoops = floor(val / 12);
@@ -61,7 +61,7 @@ int MidiUtils::scaleIndexOfNoteValue(Array<int> scale, int val)
 	return result;
 }
 
-int MidiUtils::indexOf(Array<int> vec, int val)
+int MidiFunctions::indexOf(Array<int> vec, int val)
 {
 	auto it = find(vec.begin(), vec.end(), val);
 	if (it == vec.end()) return -1;

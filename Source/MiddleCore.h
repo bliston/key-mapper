@@ -10,7 +10,7 @@ using namespace std;
 
 struct scaleItem {
 	String name;
-	Scale pitch_set;
+	Array<int> pitch_set;
 };
 
 struct presetItem {
