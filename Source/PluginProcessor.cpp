@@ -25,7 +25,7 @@ MiddlePluginAudioProcessor::MiddlePluginAudioProcessor()
 	parameters.state.setProperty("key", "C", nullptr);
 	parameters.state.setProperty("chordOctave", "3", nullptr);
 	parameters.state.setProperty("chordSize", "3", nullptr);
-	parameters.state.setProperty("progressionString", "54236", nullptr);
+	parameters.state.setProperty("progressionString", "Am F G", nullptr);
 
 	keyMap["C"] = 0;
 	keyMap["C#/Db"] = 1;
@@ -267,11 +267,24 @@ int MiddlePluginAudioProcessor::decodeChordSizeProperty(String input)
 	return input.getIntValue();
 }
 
-Array<int> MiddlePluginAudioProcessor::decodeProgressionProperty(String input)
+Array<String> MiddlePluginAudioProcessor::decodeProgressionProperty(String input)
 {
+	//StringArray tokens;
+	//tokens.addTokens(input, " ", "");
+	//return stringToVectorOfDigits(tokens.joinIntoString("").toStdString());
+
+	//::std::string symbolToSplit = input.toStdString();
+	//::std::string regexString = "\s+";
+	//::std::regex regexDelimiter(regexString);
+	//Array<String> chords = Bach::DataUtils::split(symbolToSplit, regexDelimiter);
+	Array<String> chordsArray;
 	StringArray tokens;
-	tokens.addTokens(input, " ", "");
-	return stringToVectorOfDigits(tokens.joinIntoString("").toStdString());
+	tokens = StringArray::fromTokens(input, true);
+	for (auto c : tokens)
+	{
+		chordsArray.add(c);
+	}
+	return chordsArray;
 }
 
 Array<int> MiddlePluginAudioProcessor::stringToVectorOfDigits(string id)
@@ -292,7 +305,7 @@ void MiddlePluginAudioProcessor::updateMiddleCore()
 	int key = decodeKeyProperty(parameters.state.getProperty("key").toString());
 	int chordOctave = decodeChordOctaveProperty(parameters.state.getProperty("chordOctave").toString());
 	int chordSize = decodeChordSizeProperty(parameters.state.getProperty("chordSize").toString());
-	Array<int> progression;
+	Array<String> progression;
 	if (parameters.state.hasProperty("progressionString"))
 	{
 		progression = decodeProgressionProperty(parameters.state.getProperty("progressionString").toString());

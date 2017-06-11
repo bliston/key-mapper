@@ -12,7 +12,7 @@
 // constructor of MiddleCore,
 MiddleCore::MiddleCore()
 {
-	midiMap = new DiatonicChordProgressionAndScaleMidiMap();
+	midiMap = new ChordProgressionAndScaleMidiMap();
 	initScales();
 	initPresets();
 	setPreset("Major");
@@ -71,7 +71,7 @@ void MiddleCore::setPreset(String name)
 	setChordSize(selPreset.chordSize);
 }
 
-void MiddleCore::setProgression(Array<int> p)
+void MiddleCore::setProgression(Array<String> p)
 {
 	midiMap->getChordMidiMap()->setProgression(p);
 }

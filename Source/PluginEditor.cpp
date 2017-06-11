@@ -76,13 +76,13 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 
 
 
-	progressionLabel.setText("Progression (ex: 14526):", dontSendNotification);
+	progressionLabel.setText("Progression (ex: C Am F G):", dontSendNotification);
 	addAndMakeVisible(progressionLabel);
 
 	progressionInputLabel.setEditable(true);
-	progressionInputLabel.setText("14526", dontSendNotification);
+	progressionInputLabel.setText("C Am F G", dontSendNotification);
 	addAndMakeVisible(progressionInputLabel);
-	progressionAttachment = new ValueTreeLabelAttachment(valueTreeState.state, &progressionInputLabel, "progressionString");
+	progressionAttachment = new ChordNameProgressionValueTreeLabelAttachment(valueTreeState.state, &progressionInputLabel, "progressionString");
 	setSize(paramComponentWidth + paramLabelWidth, paramControlHeight * 5);
 }
 

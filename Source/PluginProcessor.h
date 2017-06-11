@@ -13,7 +13,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MiddleCore.h"
-
+#include<string>
+#include<regex>
+#include<vector>
 //==============================================================================
 /**
 */
@@ -72,7 +74,7 @@ private:
 	int decodeKeyProperty(String input);
 	int decodeChordOctaveProperty(String input);
 	int decodeChordSizeProperty(String input);
-	Array<int> decodeProgressionProperty(String input);
+	Array<String> decodeProgressionProperty(String input);
 	Array<int> stringToVectorOfDigits(string id);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessor)

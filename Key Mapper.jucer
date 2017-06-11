@@ -13,6 +13,18 @@
               companyEmail="info@songwish.ca">
   <MAINGROUP id="e3fIU7" name="Key Mapper">
     <GROUP id="{BCF81D7C-BA9A-6526-B5E5-30B964990CA5}" name="Source">
+      <FILE id="hBWtjo" name="ChordDegreeProgressionValueTreeLabelAttachment.h"
+            compile="0" resource="0" file="Source/ChordDegreeProgressionValueTreeLabelAttachment.h"/>
+      <FILE id="Ukg6Mz" name="ChordNameProgressionValueTreeLabelAttachment.h"
+            compile="0" resource="0" file="Source/ChordNameProgressionValueTreeLabelAttachment.h"/>
+      <FILE id="pKMPdT" name="ChordProgressionAndScaleMidiMap.cpp" compile="1"
+            resource="0" file="Source/ChordProgressionAndScaleMidiMap.cpp"/>
+      <FILE id="vqsKsv" name="ChordProgressionAndScaleMidiMap.h" compile="0"
+            resource="0" file="Source/ChordProgressionAndScaleMidiMap.h"/>
+      <FILE id="jk2VUZ" name="ChordProgressionMidiMap.cpp" compile="1" resource="0"
+            file="Source/ChordProgressionMidiMap.cpp"/>
+      <FILE id="uDKb69" name="ChordProgressionMidiMap.h" compile="0" resource="0"
+            file="Source/ChordProgressionMidiMap.h"/>
       <FILE id="zbGIOl" name="BinaryData.cpp" compile="1" resource="0" file="Source/BinaryData.cpp"/>
       <FILE id="HLB0gv" name="BinaryData.h" compile="0" resource="0" file="Source/BinaryData.h"/>
       <FILE id="SEAtR1" name="AppColours.h" compile="0" resource="0" file="Source/AppColours.h"/>
@@ -40,8 +52,6 @@
       <FILE id="Fg3TXw" name="MidiMap.h" compile="0" resource="0" file="Source/MidiMap.h"/>
       <FILE id="XihzyB" name="ValueTreeComboBoxAttachment.h" compile="0"
             resource="0" file="Source/ValueTreeComboBoxAttachment.h"/>
-      <FILE id="XslUcH" name="ValueTreeLabelAttachment.h" compile="0" resource="0"
-            file="Source/ValueTreeLabelAttachment.h"/>
       <FILE id="wV2vVR" name="SimpleVoiceLeader.cpp" compile="1" resource="0"
             file="Source/SimpleVoiceLeader.cpp"/>
       <FILE id="BCA2Qx" name="SimpleVoiceLeader.h" compile="1" resource="0"

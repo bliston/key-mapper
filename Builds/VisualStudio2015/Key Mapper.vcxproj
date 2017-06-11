@@ -131,6 +131,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ChordProgressionAndScaleMidiMap.cpp"/>
+    <ClCompile Include="..\..\Source\ChordProgressionMidiMap.cpp"/>
     <ClCompile Include="..\..\Source\BinaryData.cpp"/>
     <ClCompile Include="..\..\Source\MidiFunctions.cpp"/>
     <ClCompile Include="..\..\Source\DiatonicChordProgressionAndScaleMidiMap.cpp"/>
@@ -153,6 +155,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\Utils\DataUtils.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\modules\Bach\Bach\Utils\MidiUtils.cpp">
@@ -1822,6 +1827,10 @@
     <ClCompile Include="..\..\JuceLibraryCode\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ChordDegreeProgressionValueTreeLabelAttachment.h"/>
+    <ClInclude Include="..\..\Source\ChordNameProgressionValueTreeLabelAttachment.h"/>
+    <ClInclude Include="..\..\Source\ChordProgressionAndScaleMidiMap.h"/>
+    <ClInclude Include="..\..\Source\ChordProgressionMidiMap.h"/>
     <ClInclude Include="..\..\Source\BinaryData.h"/>
     <ClInclude Include="..\..\Source\AppColours.h"/>
     <ClInclude Include="..\..\Source\CustomLookAndFeel.h"/>
@@ -1832,7 +1841,6 @@
     <ClInclude Include="..\..\Source\BlackAndWhiteMidiMap.h"/>
     <ClInclude Include="..\..\Source\MidiMap.h"/>
     <ClInclude Include="..\..\Source\ValueTreeComboBoxAttachment.h"/>
-    <ClInclude Include="..\..\Source\ValueTreeLabelAttachment.h"/>
     <ClInclude Include="..\..\Source\SimpleVoiceLeader.h"/>
     <ClInclude Include="..\..\Source\VoiceLeader.h"/>
     <ClInclude Include="..\..\Source\MiddleCore.h"/>
@@ -1842,6 +1850,7 @@
     <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\ChordNameToMidiNotes.h"/>
     <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Chord\MidiNotesToChordName.h"/>
     <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.h"/>
+    <ClInclude Include="..\..\modules\Bach\Bach\Utils\DataUtils.h"/>
     <ClInclude Include="..\..\modules\Bach\Bach\Utils\MidiUtils.h"/>
     <ClInclude Include="..\..\modules\Bach\Bach\BachCommon.h"/>
     <ClInclude Include="..\..\modules\Bach\Bach.h"/>

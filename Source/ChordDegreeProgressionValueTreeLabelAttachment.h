@@ -35,23 +35,23 @@
 /*
   ==============================================================================
 
-    ValueTreeLabelAttachment.h
+    ChordDegreeProgressionValueTreeLabelAttachment.h
     Created: 4 Jun 2016 11:17:03am
     Author:  Oli Larkin / Daniel Walz
 
   ==============================================================================
 */
 
-#ifndef VALUETREELABELATTACHMENT_H_INCLUDED
-#define VALUETREELABELATTACHMENT_H_INCLUDED
+#ifndef CHORDDEGREEPROGRESSIONVALUETREELABELATTACHMENT_H_INCLUDED
+#define CHORDDEGREEPROGRESSIONVALUETREELABELATTACHMENT_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-class ValueTreeLabelAttachment : public juce::Label::Listener,
+class ChordDegreeProgressionValueTreeLabelAttachment : public juce::Label::Listener,
                                 public juce::ValueTree::Listener
 {
 public:
-    ValueTreeLabelAttachment (juce::ValueTree& _tree,
+    ChordDegreeProgressionValueTreeLabelAttachment (juce::ValueTree& _tree,
                                juce::Label* _label,
                                juce::Identifier _property,
                                juce::UndoManager* _undoMgr = nullptr)
@@ -75,7 +75,7 @@ public:
         label->addListener (this);
     }
 
-    ~ValueTreeLabelAttachment ()
+    ~ChordDegreeProgressionValueTreeLabelAttachment ()
     {
         tree.removeListener (this);
         if (label) {
@@ -116,7 +116,7 @@ public:
 		for (char& c : input.toStdString()) {
 			if ('0' < c && c <= '9')
 			{
-				tokens.add(to_string(c - '0'));
+				tokens.add(std::to_string(c - '0'));
 			}
 
 		}
@@ -132,7 +132,7 @@ public:
 	{
 		StringArray tokens;
 		for (char& c : input.toStdString()) {
-			tokens.add(to_string(c - '0'));
+			tokens.add(std::to_string(c - '0'));
 		}
 		return tokens.joinIntoString(" ");
 	}
@@ -160,4 +160,4 @@ private:
 
 
 
-#endif  // VALUETREELABELATTACHMENT_H_INCLUDED
+#endif  // CHORDDEGREEPROGRESSIONVALUETREELABELATTACHMENT_H_INCLUDED

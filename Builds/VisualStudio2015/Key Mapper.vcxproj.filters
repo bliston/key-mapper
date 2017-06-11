@@ -397,6 +397,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ChordProgressionAndScaleMidiMap.cpp">
+      <Filter>Key Mapper\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ChordProgressionMidiMap.cpp">
+      <Filter>Key Mapper\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\BinaryData.cpp">
       <Filter>Key Mapper\Source</Filter>
     </ClCompile>
@@ -444,6 +450,9 @@
     </ClCompile>
     <ClCompile Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.cpp">
       <Filter>Juce Modules\Bach\Bach\MusicalStructures\Note</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\modules\Bach\Bach\Utils\DataUtils.cpp">
+      <Filter>Juce Modules\Bach\Bach\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\modules\Bach\Bach\Utils\MidiUtils.cpp">
       <Filter>Juce Modules\Bach\Bach\Utils</Filter>
@@ -2280,6 +2289,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ChordDegreeProgressionValueTreeLabelAttachment.h">
+      <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ChordNameProgressionValueTreeLabelAttachment.h">
+      <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ChordProgressionAndScaleMidiMap.h">
+      <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ChordProgressionMidiMap.h">
+      <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\BinaryData.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
@@ -2310,9 +2331,6 @@
     <ClInclude Include="..\..\Source\ValueTreeComboBoxAttachment.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ValueTreeLabelAttachment.h">
-      <Filter>Key Mapper\Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\SimpleVoiceLeader.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
@@ -2339,6 +2357,9 @@
     </ClInclude>
     <ClInclude Include="..\..\modules\Bach\Bach\MusicalStructures\Note\Note.h">
       <Filter>Juce Modules\Bach\Bach\MusicalStructures\Note</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\modules\Bach\Bach\Utils\DataUtils.h">
+      <Filter>Juce Modules\Bach\Bach\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\modules\Bach\Bach\Utils\MidiUtils.h">
       <Filter>Juce Modules\Bach\Bach\Utils</Filter>

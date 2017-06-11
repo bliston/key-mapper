@@ -14,7 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 #include "ValueTreeComboBoxAttachment.h"
-#include "ValueTreeLabelAttachment.h"
+#include "ChordNameProgressionValueTreeLabelAttachment.h"
 #include "CustomLookAndFeel.h"
 
 //==============================================================================
@@ -63,7 +63,7 @@ private:
 
 	Label progressionLabel;
 	Label progressionInputLabel;
-	ScopedPointer<ValueTreeLabelAttachment> progressionAttachment;
+	ScopedPointer<ChordNameProgressionValueTreeLabelAttachment> progressionAttachment;
     
     CustomLookAndFeel lookAndFeel;
 

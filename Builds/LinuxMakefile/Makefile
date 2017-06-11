@@ -64,6 +64,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(JUCE_OBJDIR)/ChordProgressionAndScaleMidiMap_2a9a226a.o \
+  $(JUCE_OBJDIR)/ChordProgressionMidiMap_419be31d.o \
   $(JUCE_OBJDIR)/BinaryData_5ba7f54.o \
   $(JUCE_OBJDIR)/MidiFunctions_9eae0bdb.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionAndScaleMidiMap_d0d249f9.o \
@@ -113,6 +115,16 @@ clean:
 strip:
 	@echo Stripping Key Mapper
 	-@$(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(TARGET)
+
+$(JUCE_OBJDIR)/ChordProgressionAndScaleMidiMap_2a9a226a.o: ../../Source/ChordProgressionAndScaleMidiMap.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ChordProgressionAndScaleMidiMap.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ChordProgressionMidiMap_419be31d.o: ../../Source/ChordProgressionMidiMap.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ChordProgressionMidiMap.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_5ba7f54.o: ../../Source/BinaryData.cpp
 	-@mkdir -p $(JUCE_OBJDIR)

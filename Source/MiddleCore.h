@@ -2,7 +2,7 @@
 #include <iostream>      // for cout and cin
 #include <math.h>
 #include "MidiMap.h"
-#include "DiatonicChordProgressionAndScaleMidiMap.h"
+#include "ChordProgressionAndScaleMidiMap.h"
 #include "SimpleVoiceLeader.h"
 #include <sstream>
 
@@ -27,7 +27,7 @@ public:                  // begin public section
 	void initScales();
 	void initPresets();
 	void setPreset(String name);
-	void setProgression(Array<int> p);
+	void setProgression(Array<String> p);
 	void setKey(int k);
 	void setChordOctave(int oct);
 	void setChordSize(int size);
@@ -39,6 +39,6 @@ private:
 	int lastBlackIndex = -1;
 	map<int, scaleItem> scales;
 	map<String, presetItem> presets;
-	DiatonicChordProgressionAndScaleMidiMap* midiMap;
+	ChordProgressionAndScaleMidiMap* midiMap;
 	SimpleVoiceLeader* voiceLeader;
 };
