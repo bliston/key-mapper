@@ -15,7 +15,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	: AudioProcessorEditor(parent),
 	valueTreeState(vts)
 {
-    CustomLookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
+    MiddleLookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
 	scalesLabel.setText("Scales:", dontSendNotification);
 	addAndMakeVisible(scalesLabel);
 
@@ -83,7 +83,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	progressionInputLabel.setText("C Am F G", dontSendNotification);
 	addAndMakeVisible(progressionInputLabel);
 	progressionAttachment = new ChordNameProgressionValueTreeLabelAttachment(valueTreeState.state, &progressionInputLabel, "progressionString");
-	setSize(paramComponentWidth + paramLabelWidth, paramControlHeight * 5);
+	setSize(paramComponentWidth + paramLabelWidth + 50, paramControlHeight * 5 + 50);
 }
 
 MiddlePluginAudioProcessorEditor::~MiddlePluginAudioProcessorEditor()
@@ -93,9 +93,9 @@ MiddlePluginAudioProcessorEditor::~MiddlePluginAudioProcessorEditor()
 //==============================================================================
 void MiddlePluginAudioProcessorEditor::resized()
 {
-	juce::Rectangle<int> r = getLocalBounds();
-	const int padding = 10;
-
+    const int padding = 10;
+	juce::Rectangle<int> r = getLocalBounds().reduced(padding);
+	
 	juce::Rectangle<int> scalesRect = r.removeFromTop(paramControlHeight);
 	scalesLabel.setBounds(scalesRect.removeFromLeft(paramLabelWidth));
 	scalesComboBox.setBounds(scalesRect.reduced(padding));

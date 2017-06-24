@@ -2307,9 +2307,6 @@
     <ClInclude Include="..\..\Source\AppColours.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\CustomLookAndFeel.h">
-      <Filter>Key Mapper\Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\MidiFunctions.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
@@ -2320,6 +2317,9 @@
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ScaleMidiMap.h">
+      <Filter>Key Mapper\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MiddleLookAndFeel.h">
       <Filter>Key Mapper\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\BlackAndWhiteMidiMap.h">
