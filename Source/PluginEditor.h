@@ -15,7 +15,6 @@
 #include "PluginProcessor.h"
 #include "ValueTreeComboBoxAttachment.h"
 #include "ChordNameProgressionValueTreeLabelAttachment.h"
-#include "MiddleLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -65,7 +64,7 @@ private:
 	Label progressionInputLabel;
 	ScopedPointer<ChordNameProgressionValueTreeLabelAttachment> progressionAttachment;
     
-    MiddleLookAndFeel lookAndFeel;
+    Peels::MiddleLookAndFeel lookAndFeel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddlePluginAudioProcessorEditor)
 };

@@ -15,7 +15,7 @@ MiddlePluginAudioProcessorEditor::MiddlePluginAudioProcessorEditor(AudioProcesso
 	: AudioProcessorEditor(parent),
 	valueTreeState(vts)
 {
-    MiddleLookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
+    LookAndFeel::setDefaultLookAndFeel(&lookAndFeel);
 	scalesLabel.setText("Scales:", dontSendNotification);
 	addAndMakeVisible(scalesLabel);
 

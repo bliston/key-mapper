@@ -66,7 +66,6 @@ endif
 OBJECTS := \
   $(JUCE_OBJDIR)/ChordProgressionAndScaleMidiMap_2a9a226a.o \
   $(JUCE_OBJDIR)/ChordProgressionMidiMap_419be31d.o \
-  $(JUCE_OBJDIR)/BinaryData_5ba7f54.o \
   $(JUCE_OBJDIR)/MidiFunctions_9eae0bdb.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionAndScaleMidiMap_d0d249f9.o \
   $(JUCE_OBJDIR)/DiatonicChordProgressionMidiMap_b12009ac.o \
@@ -94,6 +93,7 @@ OBJECTS := \
   $(JUCE_OBJDIR)/juce_gui_extra_4a026f23.o \
   $(JUCE_OBJDIR)/juce_opengl_cd70b4c2.o \
   $(JUCE_OBJDIR)/juce_video_f128c512.o \
+  $(JUCE_OBJDIR)/Peels_14e67ef8.o \
 
 .PHONY: clean
 
@@ -124,11 +124,6 @@ $(JUCE_OBJDIR)/ChordProgressionAndScaleMidiMap_2a9a226a.o: ../../Source/ChordPro
 $(JUCE_OBJDIR)/ChordProgressionMidiMap_419be31d.o: ../../Source/ChordProgressionMidiMap.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ChordProgressionMidiMap.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/BinaryData_5ba7f54.o: ../../Source/BinaryData.cpp
-	-@mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling BinaryData.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MidiFunctions_9eae0bdb.o: ../../Source/MidiFunctions.cpp
@@ -264,6 +259,11 @@ $(JUCE_OBJDIR)/juce_opengl_cd70b4c2.o: ../../JuceLibraryCode/juce_opengl.cpp
 $(JUCE_OBJDIR)/juce_video_f128c512.o: ../../JuceLibraryCode/juce_video.cpp
 	-@mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling juce_video.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Peels_14e67ef8.o: ../../JuceLibraryCode/Peels.cpp
+	-@mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Peels.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) -o "$@" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
