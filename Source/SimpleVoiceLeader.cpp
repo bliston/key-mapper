@@ -36,16 +36,24 @@ int SimpleVoiceLeader::getChordReferenceNoteValue()
 	return chordReferenceNoteValue;
 }
 
-int SimpleVoiceLeader::fitNote(int note)
+int SimpleVoiceLeader::fitChordTone(int note)
 {
 	return chordReferenceNoteValue + note % 12 - chordReferenceNoteValue % 12;
 }
 
+int SimpleVoiceLeader::fitBass(int note)
+{
+	return note % 12 + bassOctave * 12;
+}
+
 Array<int> SimpleVoiceLeader::lead(Array<int> to)
 {
+	int bass = to[0];
+	to.remove(0);
 	Array<int> result;
+	result.add(fitBass(bass));
 	for (int n : to) {
-		result.add(fitNote(n));
+		result.add(fitChordTone(n));
 	}
 	return result;
 }

@@ -17,12 +17,14 @@ public:
 	~SimpleVoiceLeader();
 	void setChordReferenceNoteValue(int val);
 	int getChordReferenceNoteValue();
-	int fitNote(int note);
+	int fitChordTone(int note);
+	int fitBass(int note);
 	Array<int> lead(Array<int> to);
 	pair<Array<int>, Array<int>> leadInto(Array<int> to, bool isNoteOn, bool release);
 
 private:
 	int chordReferenceNoteValue;
+	int bassOctave = 2;
 	pair<Array<int>, Array<int>> last;
 };
 

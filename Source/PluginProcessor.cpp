@@ -17,8 +17,10 @@
 MiddlePluginAudioProcessor::MiddlePluginAudioProcessor() 
 	: parameters(*this, nullptr)
 {
-	whiteNotesChannel = 1;
+	bassNotesChannel = 1;
 	blackNotesChannel = 2;
+	whiteNotesChannel = 3;
+
 
 	parameters.state = ValueTree(Identifier("MiddlePlugin"));
 	parameters.state.setProperty("scalesId", "Major 1", nullptr);
@@ -148,19 +150,19 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 	MidiBuffer events;
 	bool isBlack = mc.isBlack(m.getNoteNumber());
 	pair<Array<int>, Array<int>> notes;
-	int channel = whiteNotesChannel;
+	int bass;
+	int note;
+	MidiMessage mm;
 	{// white scale notes
 		if (m.isNoteOff()) {
 			notes = mc.get(m.getNoteNumber(), false);
 			if (isBlack) {
-				channel = blackNotesChannel;
 				blackNotesOn.clear();
 			}
 		}
 		else if (m.isNoteOn()) {
 			notes = mc.get(m.getNoteNumber(), true);
 			if (isBlack) {
-				channel = blackNotesChannel;
 				blackNotesOn.add(m.getNoteNumber());
 				if (blackNotesOn.size() > 2) {
 					int minBlack = *std::min_element(blackNotesOn.begin(), blackNotesOn.end());
@@ -169,18 +171,54 @@ MidiBuffer MiddlePluginAudioProcessor::mappedEvents(MidiMessage m, const int tim
 				}
 			}
 		}
-		for (int n : notes.first) {
-            if (channel > 0 && channel <= 16 && isPositiveAndBelow (n, (int) 128)) {
-                MidiMessage mm = MidiMessage::noteOff(channel, n);
-                events.addEvent(mm, time);
-            }
+		if (isBlack)
+		{
+			bass = notes.first[0];
+			notes.first.remove(0);
+			mm = MidiMessage::noteOff(bassNotesChannel, bass);
+			events.addEvent(mm, time);
+			for (int n : notes.first) 
+			{
+				if (isPositiveAndBelow(n, (int)128)) {
+					mm = MidiMessage::noteOff(blackNotesChannel, n);
+					events.addEvent(mm, time);
+				}
+			}
 		}
-		for (int n : notes.second) {
-            if (channel > 0 && channel <= 16 && isPositiveAndBelow (n, (int) 128)) {
-                MidiMessage mm = MidiMessage::noteOn(channel, n, m.getVelocity());
-                events.addEvent(mm, time);
-            }
+		else 
+		{
+			for (int n : notes.first) 
+			{
+				if (isPositiveAndBelow(n, (int)128)) {
+					mm = MidiMessage::noteOff(whiteNotesChannel, n);
+					events.addEvent(mm, time);
+				}
+			}
 		}
+		if (isBlack)
+		{
+			bass = notes.second[0];
+			notes.second.remove(0);
+			mm = MidiMessage::noteOn(bassNotesChannel, bass, m.getVelocity());
+			events.addEvent(mm, time);
+			for (int n : notes.second) {
+				if (isPositiveAndBelow(n, (int)128)) {
+					mm = MidiMessage::noteOn(blackNotesChannel, n, m.getVelocity());
+					events.addEvent(mm, time);
+				}
+			}
+		}
+		else
+		{
+			for (int n : notes.second) 
+			{
+				if (isPositiveAndBelow(n, (int)128)) {
+					mm = MidiMessage::noteOn(whiteNotesChannel, n, m.getVelocity());
+					events.addEvent(mm, time);
+				}
+			}
+		}
+
 		return events;
 	}
 }

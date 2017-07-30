@@ -70,6 +70,7 @@ private:
 	map<String, int> keyMap;
 	int whiteNotesChannel;
 	int blackNotesChannel;
+	int bassNotesChannel;
 	String decodeScalesProperty(String input);
 	int decodeKeyProperty(String input);
 	int decodeChordOctaveProperty(String input);
