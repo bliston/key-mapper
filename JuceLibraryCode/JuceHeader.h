@@ -10,8 +10,7 @@
 
 */
 
-#ifndef __APPHEADERFILE_Z4XLWD__
-#define __APPHEADERFILE_Z4XLWD__
+#pragma once
 
 #include "AppConfig.h"
 
@@ -47,5 +46,3 @@ namespace ProjectInfo
     const int          versionNumber  = 0x2;
 }
 #endif
-
-#endif   // __APPHEADERFILE_Z4XLWD__
